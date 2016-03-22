@@ -192,32 +192,36 @@ public class ProgressView: UIView {
 		cutoutLayer.frame = bounds
 	}
 	
-	func start() {
-		progressLayer.animateProgressTo(1.0, withDurationOf:2.0 * 60.0, delegate: self)
-	}
-	
-	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		super.touchesBegan(touches, withEvent: event)
-
-		print("state = \(animationStateMonitor.currentState())")
-		switch (animationStateMonitor.currentState()) {
-		case .Stopped:
-			start()
-		case .Running:
-			fallthrough
-		case .Paused:
-			animationStateMonitor.pauseOrResume(progressLayer)
-		}
-	}
-	
-	public override func animationDidStart(anim: CAAnimation) {
-		animationStateMonitor.started()
-		print("Started; state = \(animationStateMonitor.currentState())")
-	}
-	
-	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		animationStateMonitor.stopped()
-		print("Stopped; state = \(animationStateMonitor.currentState())")
-	}
+	// This is test code for testing the basic animation, it doesn't really
+	// belong here, but should probably be part of the contract with the view controller
+	// This would also rely on the concept of the timeline, which will be implemented
+	// later
+//	func start() {
+//		progressLayer.animateProgressTo(1.0, withDurationOf:2.0 * 60.0, delegate: self)
+//	}
+//	
+//	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//		super.touchesBegan(touches, withEvent: event)
+//
+//		print("state = \(animationStateMonitor.currentState())")
+//		switch (animationStateMonitor.currentState()) {
+//		case .Stopped:
+//			start()
+//		case .Running:
+//			fallthrough
+//		case .Paused:
+//			animationStateMonitor.pauseOrResume(progressLayer)
+//		}
+//	}
+//	
+//	public override func animationDidStart(anim: CAAnimation) {
+//		animationStateMonitor.started()
+//		print("Started; state = \(animationStateMonitor.currentState())")
+//	}
+//	
+//	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+//		animationStateMonitor.stopped()
+//		print("Stopped; state = \(animationStateMonitor.currentState())")
+//	}
 
 }

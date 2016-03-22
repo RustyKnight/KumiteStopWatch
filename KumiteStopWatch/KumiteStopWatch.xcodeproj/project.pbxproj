@@ -19,6 +19,7 @@
 		705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */; };
 		7059834B1C9D04D8006B697A /* AngleGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7059834A1C9D04D8006B697A /* AngleGradientLayer.m */; };
 		7059836E1C9FE924006B697A /* AnimationStateMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059836D1C9FE924006B697A /* AnimationStateMonitor.swift */; };
+		7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7087FF9D1CA156BE00045471 /* TimeLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		705983491C9D04D8006B697A /* AngleGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngleGradientLayer.h; sourceTree = "<group>"; };
 		7059834A1C9D04D8006B697A /* AngleGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AngleGradientLayer.m; sourceTree = "<group>"; };
 		7059836D1C9FE924006B697A /* AnimationStateMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationStateMonitor.swift; sourceTree = "<group>"; };
+		7087FF9D1CA156BE00045471 /* TimeLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLine.swift; path = TimeLine/TimeLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		705983241C9D0311006B697A /* KumiteStopWatch */ = {
 			isa = PBXGroup;
 			children = (
+				7087FF9C1CA156A300045471 /* TimeLine */,
 				705983251C9D0311006B697A /* AppDelegate.swift */,
 				705983391C9D0346006B697A /* Assets */,
 				705983381C9D0333006B697A /* StoryBoard */,
@@ -153,6 +156,14 @@
 			name = AngleGradientLayer;
 			sourceTree = "<group>";
 		};
+		7087FF9C1CA156A300045471 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				7087FF9D1CA156BE00045471 /* TimeLine.swift */,
+			);
+			name = TimeLine;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */,
 				705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */,
 				7059836E1C9FE924006B697A /* AnimationStateMonitor.swift in Sources */,
 				7059834B1C9D04D8006B697A /* AngleGradientLayer.m in Sources */,
@@ -389,6 +401,7 @@
 				705983361C9D0311006B697A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		705983261C9D0311006B697A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983251C9D0311006B697A /* AppDelegate.swift */; };
+		705983281C9D0311006B697A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983271C9D0311006B697A /* ViewController.swift */; };
+		7059832B1C9D0311006B697A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 705983291C9D0311006B697A /* Main.storyboard */; };
+		7059832D1C9D0311006B697A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7059832C1C9D0311006B697A /* Assets.xcassets */; };
+		705983301C9D0311006B697A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7059832E1C9D0311006B697A /* LaunchScreen.storyboard */; };
+		7059833C1C9D03C2006B697A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059833B1C9D03C2006B697A /* Extensions.swift */; };
+		7059833F1C9D03EA006B697A /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059833E1C9D03EA006B697A /* ProgressView.swift */; };
+		705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983411C9D0491006B697A /* OverlayCutoutLayer.swift */; };
+		705983451C9D04A2006B697A /* PieSliceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983441C9D04A2006B697A /* PieSliceLayer.swift */; };
+		705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */; };
+		7059834B1C9D04D8006B697A /* AngleGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7059834A1C9D04D8006B697A /* AngleGradientLayer.m */; };
+		7059836E1C9FE924006B697A /* AnimationStateMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059836D1C9FE924006B697A /* AnimationStateMonitor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		705983221C9D0311006B697A /* KumiteStopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KumiteStopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		705983251C9D0311006B697A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		705983271C9D0311006B697A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7059832A1C9D0311006B697A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7059832C1C9D0311006B697A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7059832F1C9D0311006B697A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		705983311C9D0311006B697A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7059833B1C9D03C2006B697A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7059833E1C9D03EA006B697A /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		705983411C9D0491006B697A /* OverlayCutoutLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayCutoutLayer.swift; sourceTree = "<group>"; };
+		705983441C9D04A2006B697A /* PieSliceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceLayer.swift; sourceTree = "<group>"; };
+		705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceProgressLayer.swift; sourceTree = "<group>"; };
+		705983481C9D04D8006B697A /* KumiteStopWatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KumiteStopWatch-Bridging-Header.h"; sourceTree = "<group>"; };
+		705983491C9D04D8006B697A /* AngleGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngleGradientLayer.h; sourceTree = "<group>"; };
+		7059834A1C9D04D8006B697A /* AngleGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AngleGradientLayer.m; sourceTree = "<group>"; };
+		7059836D1C9FE924006B697A /* AnimationStateMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationStateMonitor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7059831F1C9D0311006B697A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		705983191C9D0311006B697A = {
+			isa = PBXGroup;
+			children = (
+				705983241C9D0311006B697A /* KumiteStopWatch */,
+				705983231C9D0311006B697A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		705983231C9D0311006B697A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				705983221C9D0311006B697A /* KumiteStopWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		705983241C9D0311006B697A /* KumiteStopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				705983251C9D0311006B697A /* AppDelegate.swift */,
+				705983391C9D0346006B697A /* Assets */,
+				705983381C9D0333006B697A /* StoryBoard */,
+				7059833A1C9D03B2006B697A /* Utilities */,
+				705983371C9D031F006B697A /* ViewControllers */,
+				7059833D1C9D03DF006B697A /* Views */,
+			);
+			path = KumiteStopWatch;
+			sourceTree = "<group>";
+		};
+		705983371C9D031F006B697A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				705983271C9D0311006B697A /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		705983381C9D0333006B697A /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				705983291C9D0311006B697A /* Main.storyboard */,
+				7059832E1C9D0311006B697A /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoard;
+			sourceTree = "<group>";
+		};
+		705983391C9D0346006B697A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7059832C1C9D0311006B697A /* Assets.xcassets */,
+				705983311C9D0311006B697A /* Info.plist */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		7059833A1C9D03B2006B697A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7059833B1C9D03C2006B697A /* Extensions.swift */,
+				7059836D1C9FE924006B697A /* AnimationStateMonitor.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		7059833D1C9D03DF006B697A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7059834C1C9D04F8006B697A /* AngleGradientLayer */,
+				705983401C9D0485006B697A /* OverlayCutout */,
+				705983431C9D0497006B697A /* PieSlice */,
+				7059833E1C9D03EA006B697A /* ProgressView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		705983401C9D0485006B697A /* OverlayCutout */ = {
+			isa = PBXGroup;
+			children = (
+				705983411C9D0491006B697A /* OverlayCutoutLayer.swift */,
+			);
+			name = OverlayCutout;
+			sourceTree = "<group>";
+		};
+		705983431C9D0497006B697A /* PieSlice */ = {
+			isa = PBXGroup;
+			children = (
+				705983441C9D04A2006B697A /* PieSliceLayer.swift */,
+				705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */,
+			);
+			name = PieSlice;
+			sourceTree = "<group>";
+		};
+		7059834C1C9D04F8006B697A /* AngleGradientLayer */ = {
+			isa = PBXGroup;
+			children = (
+				705983491C9D04D8006B697A /* AngleGradientLayer.h */,
+				7059834A1C9D04D8006B697A /* AngleGradientLayer.m */,
+				705983481C9D04D8006B697A /* KumiteStopWatch-Bridging-Header.h */,
+			);
+			name = AngleGradientLayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		705983211C9D0311006B697A /* KumiteStopWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 705983341C9D0311006B697A /* Build configuration list for PBXNativeTarget "KumiteStopWatch" */;
+			buildPhases = (
+				7059831E1C9D0311006B697A /* Sources */,
+				7059831F1C9D0311006B697A /* Frameworks */,
+				705983201C9D0311006B697A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KumiteStopWatch;
+			productName = KumiteStopWatch;
+			productReference = 705983221C9D0311006B697A /* KumiteStopWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7059831A1C9D0311006B697A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = KaiZen;
+				TargetAttributes = {
+					705983211C9D0311006B697A = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 7059831D1C9D0311006B697A /* Build configuration list for PBXProject "KumiteStopWatch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 705983191C9D0311006B697A;
+			productRefGroup = 705983231C9D0311006B697A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				705983211C9D0311006B697A /* KumiteStopWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		705983201C9D0311006B697A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				705983301C9D0311006B697A /* LaunchScreen.storyboard in Resources */,
+				7059832D1C9D0311006B697A /* Assets.xcassets in Resources */,
+				7059832B1C9D0311006B697A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7059831E1C9D0311006B697A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */,
+				7059836E1C9FE924006B697A /* AnimationStateMonitor.swift in Sources */,
+				7059834B1C9D04D8006B697A /* AngleGradientLayer.m in Sources */,
+				705983451C9D04A2006B697A /* PieSliceLayer.swift in Sources */,
+				705983281C9D0311006B697A /* ViewController.swift in Sources */,
+				705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */,
+				7059833F1C9D03EA006B697A /* ProgressView.swift in Sources */,
+				7059833C1C9D03C2006B697A /* Extensions.swift in Sources */,
+				705983261C9D0311006B697A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		705983291C9D0311006B697A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7059832A1C9D0311006B697A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7059832E1C9D0311006B697A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7059832F1C9D0311006B697A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		705983321C9D0311006B697A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		705983331C9D0311006B697A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		705983351C9D0311006B697A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = KumiteStopWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "KumiteStopWatch/KumiteStopWatch-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		705983361C9D0311006B697A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = KumiteStopWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "KumiteStopWatch/KumiteStopWatch-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7059831D1C9D0311006B697A /* Build configuration list for PBXProject "KumiteStopWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				705983321C9D0311006B697A /* Debug */,
+				705983331C9D0311006B697A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		705983341C9D0311006B697A /* Build configuration list for PBXNativeTarget "KumiteStopWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				705983351C9D0311006B697A /* Debug */,
+				705983361C9D0311006B697A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7059831A1C9D0311006B697A /* Project object */;
+}

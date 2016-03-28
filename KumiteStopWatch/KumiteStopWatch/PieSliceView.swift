@@ -160,6 +160,9 @@ import UIKit
 		progressLineWidth = 1
 		progressStrokeColor = UIColor.whiteColor()
 		
+		conicalFillPieSliceProgressLayer.colors = [UIColor.greenColor(), UIColor.yellowColor(), UIColor.redColor()]
+		conicalFillPieSliceProgressLayer.locations = [0.0, 0.75, 1.0]
+		
 		conicalFillPieSliceProgressLayer.frame = bounds
 		overlayLayer.frame = bounds
 		layer.addSublayer(conicalFillPieSliceProgressLayer)

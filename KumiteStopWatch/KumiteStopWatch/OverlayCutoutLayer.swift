@@ -19,13 +19,6 @@ public class OverlayCutoutLayer: CAShapeLayer {
 			setNeedsDisplay()
 		}
 	}
-	
-	public var contentInsets: UIEdgeInsets = UIEdgeInsetsZero {
-		didSet {
-			setNeedsLayout()
-			setNeedsDisplay()
-		}
-	}
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -55,9 +48,7 @@ public class OverlayCutoutLayer: CAShapeLayer {
 		super.layoutSublayers()
 		
 		// Outer circle
-		let circleRadius = (min(
-			CGRectGetHeight(frame) - contentInsets.verticalInsets(),
-			CGRectGetWidth(frame)) - contentInsets.horizontalInsets()) / 2
+		let circleRadius = frame.minDimension() / 2
 		var circleFrame = CGRect(x: 0, y: 0, width: 2 * circleRadius, height: 2 * circleRadius)
 		circleFrame.origin.x = CGRectGetMidX(bounds) - CGRectGetMidX(circleFrame)
 		circleFrame.origin.y = CGRectGetMidY(bounds) - CGRectGetMidY(circleFrame)

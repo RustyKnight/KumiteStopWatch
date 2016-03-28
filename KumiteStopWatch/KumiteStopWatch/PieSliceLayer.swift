@@ -8,14 +8,10 @@
 //
 
 import UIKit
+import KZCoreLibrary
+import KZCoreUILibrary
 
 public class PieSliceLayer: CALayer {
-	
-	public var contentInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
-		didSet {
-			setNeedsDisplay()
-		}
-	}
 
 	public var startAngle: CGFloat = 0.0 {
 		didSet {
@@ -33,11 +29,13 @@ public class PieSliceLayer: CALayer {
 			setNeedsDisplay()
 		}
 	}
+	
 	public var lineWidth: CGFloat = 1.0 {
 		didSet {
 			setNeedsDisplay()
 		}
 	}
+	
 	public var strokeColor: UIColor? = UIColor.blackColor() {
 		didSet {
 			setNeedsDisplay()
@@ -113,7 +111,7 @@ public class PieSliceLayer: CALayer {
 		when the slice changes its inscribed angle.	
 	*/
 	public override func drawInContext(ctx: CGContext) {
-		let viewableBounds = bounds.fromInsets(contentInsets)
+		let viewableBounds = bounds
 		let center = CGPoint(x: CGRectGetWidth(viewableBounds) / 2, y: CGRectGetHeight(viewableBounds) / 2)
 		let radius = min(center.x, center.y)
 		

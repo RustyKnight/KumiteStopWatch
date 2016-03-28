@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KZCoreLibrary
+import KZCoreUILibrary
 
 /**
 	This is a implementaiton of AngleGradientLayer with a PieSliceLayer mask
@@ -15,21 +17,10 @@ import UIKit
 	a means by which I can change the endAngle of the masked layer and have it
 	animate by using a property or other "progress" method
 */
-public class PieSliceProgressLayer: AngleGradientLayer {
+public class PieSliceProgressLayer: CALayer {
 	
 	let maskedProgressLayer: PieSliceLayer = PieSliceLayer()
 	let progressLayer: PieSliceLayer = PieSliceLayer()
-	
-	public var contentInsets: UIEdgeInsets {
-		set(newValue) {
-			maskedProgressLayer.contentInsets = newValue
-			progressLayer.contentInsets = newValue
-		}
-		
-		get {
-			return maskedProgressLayer.contentInsets
-		}
-	}
 	
 	public var lineWidth: CGFloat {
 		set(newValue) {
@@ -48,6 +39,13 @@ public class PieSliceProgressLayer: AngleGradientLayer {
 		
 		get {
 			return progressLayer.strokeColor
+		}
+	}
+	
+	public var pieSliceProgressLayerDelegate: PieSliceProgressLayerDelegate? {
+		didSet {
+			setNeedsLayout()
+			setNeedsDisplay()
 		}
 	}
 
@@ -87,6 +85,9 @@ public class PieSliceProgressLayer: AngleGradientLayer {
 		super.layoutSublayers()
 		maskedProgressLayer.frame = bounds
 		progressLayer.frame = bounds
+		if let delegate = pieSliceProgressLayerDelegate {
+			contents = delegate.contentsFor(self)
+		}
 	}
 
 	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
@@ -109,4 +110,8 @@ public class PieSliceProgressLayer: AngleGradientLayer {
 		progressLayer.addAnimation(anim, forKey: "endAngle")
 	}
 	
+}
+
+public protocol PieSliceProgressLayerDelegate {
+	func contentsFor(layer: PieSliceProgressLayer) -> CGImage?;
 }

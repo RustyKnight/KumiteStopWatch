@@ -13,9 +13,9 @@ import UIKit
 	pie slice layer are placed
 */
 @IBDesignable
-public class ProgressView: UIView {
+public class CutoutProgressView: UIView {
 	
-	let progressLayer: PieSliceProgressLayer = PieSliceProgressLayer()
+	let progressLayer: ConicalFillPieSliceProgressLayer = ConicalFillPieSliceProgressLayer()
 	let cutoutLayer: OverlayCutoutLayer = OverlayCutoutLayer()
 	
 	@IBInspectable public override var backgroundColor: UIColor? {
@@ -37,13 +37,6 @@ public class ProgressView: UIView {
 		
 		get {
 			return super.backgroundColor
-		}
-	}
-	
-	@IBInspectable public var contentInsets: UIEdgeInsets = UIEdgeInsetsZero {
-		didSet {
-			cutoutLayer.contentInsets = contentInsets
-			progressLayer.contentInsets = contentInsets
 		}
 	}
 	
@@ -128,23 +121,23 @@ public class ProgressView: UIView {
 		}
 	}
 	
-	@IBInspectable public var colors: [CGColor]! {
+	@IBInspectable public var colors: [UIColor]! {
 		set(newValue) {
 			progressLayer.colors = newValue
 		}
 		
 		get {
-			return progressLayer.colors as! [CGColor]!
+			return progressLayer.colors
 		}
 	}
 
-	@IBInspectable public var locations: [CGFloat]! {
+	@IBInspectable public var locations: [Double]! {
 		set(newValue) {
 			progressLayer.locations = newValue
 		}
 		
 		get {
-			return progressLayer.locations as! [CGFloat]!
+			return progressLayer.locations
 		}
 	}
 	
@@ -161,12 +154,11 @@ public class ProgressView: UIView {
 	}
 	
 	func configure() {
-		contentInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
 		backgroundColor = UIColor.blackColor()
 		progressLayer.colors = [
-			UIColor.greenColor().CGColor,
-			UIColor.yellowColor().CGColor,
-			UIColor.redColor().CGColor]
+			UIColor.greenColor(),
+			UIColor.yellowColor(),
+			UIColor.redColor()]
 		progressLayer.locations = [
 			0.0,
 			0.75,
@@ -194,34 +186,34 @@ public class ProgressView: UIView {
 	
 	// This is test code for testing the basic animation, it doesn't really
 	// belong here, but should probably be part of the contract with the view controller
-	// This would also rely on the concept of the timeline, which will be implemented
+	// This would also relies on the concept of the timeline, which will be implemented
 	// later
-//	func start() {
-//		progressLayer.animateProgressTo(1.0, withDurationOf:2.0 * 60.0, delegate: self)
-//	}
-//	
-//	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//		super.touchesBegan(touches, withEvent: event)
-//
-//		print("state = \(animationStateMonitor.currentState())")
-//		switch (animationStateMonitor.currentState()) {
-//		case .Stopped:
-//			start()
-//		case .Running:
-//			fallthrough
-//		case .Paused:
-//			animationStateMonitor.pauseOrResume(progressLayer)
-//		}
-//	}
-//	
-//	public override func animationDidStart(anim: CAAnimation) {
-//		animationStateMonitor.started()
-//		print("Started; state = \(animationStateMonitor.currentState())")
-//	}
-//	
-//	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-//		animationStateMonitor.stopped()
-//		print("Stopped; state = \(animationStateMonitor.currentState())")
-//	}
+	func start() {
+		progressLayer.animateProgressTo(1.0, withDurationOf:2.0 * 60.0, delegate: self)
+	}
+	
+	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		super.touchesBegan(touches, withEvent: event)
+
+		print("state = \(animationStateMonitor.currentState())")
+		switch (animationStateMonitor.currentState()) {
+		case .Stopped:
+			start()
+		case .Running:
+			fallthrough
+		case .Paused:
+			animationStateMonitor.pauseOrResume(progressLayer)
+		}
+	}
+	
+	public override func animationDidStart(anim: CAAnimation) {
+		animationStateMonitor.started()
+		print("Started; state = \(animationStateMonitor.currentState())")
+	}
+	
+	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+		animationStateMonitor.stopped()
+		print("Stopped; state = \(animationStateMonitor.currentState())")
+	}
 
 }

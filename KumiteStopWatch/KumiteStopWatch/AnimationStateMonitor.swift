@@ -56,17 +56,25 @@ flags and algorithims
 public class AnimationStateMonitor {
 	private var state: AnimationState = .Stopped
 	
-	public func pauseOrResume(layer: CALayer!) {
-		switch (state) {
-		case .Running:
-			layer.pauseAnimation()
-			state = .Paused
-		case .Paused:
-			layer.resumeAnimation()
-			state = .Running
-		default:
-			break
-		}
+//	public func pauseOrResume(layer: CALayer!) {
+//		switch (state) {
+//		case .Running:
+//			layer.pauseAnimation()
+//			state = .Paused
+//		case .Paused:
+//			layer.resumeAnimation()
+//			state = .Running
+//		default:
+//			break
+//		}
+//	}
+	
+	public func paused() {
+		state = .Paused
+	}
+	
+	public func running() {
+		state = .Running
 	}
 	
 	public func started() {

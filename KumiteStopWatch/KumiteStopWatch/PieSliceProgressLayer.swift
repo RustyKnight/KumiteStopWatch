@@ -98,14 +98,17 @@ public class PieSliceProgressLayer: CALayer {
 		anim.delegate = delegate
 		
 		let range = 360.0 * progress
-		let angle = range.toCGFloat// + progressLayer.startAngle.toDegrees
+		let angle = range.toCGFloat - 90.0.toCGFloat// + progressLayer.startAngle.toDegrees
+
+		maskedProgressLayer.endAngle = angle
+		progressLayer.endAngle = angle
 		
-		anim.fromValue = 0
+		anim.fromValue = -90.0.toRadians
 		anim.toValue = angle.toRadians
 		anim.duration = duration
-		anim.removedOnCompletion = false
-		anim.additive = true
-		anim.fillMode = kCAFillModeForwards
+//		anim.removedOnCompletion = false
+//		anim.additive = true
+//		anim.fillMode = kCAFillModeForwards
 		maskedProgressLayer.addAnimation(anim, forKey: "endAngle")
 		progressLayer.addAnimation(anim, forKey: "endAngle")
 	}

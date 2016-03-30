@@ -1,4 +1,4 @@
 #Kumite StopWatch
 
 github "RustyKnight/KZCoreLibrary" >= 0.0.3
-github "RustyKnight/KZCoreUILibrary" >= 0.0.5
+github "RustyKnight/KZCoreUILibrary" >= 0.0.8

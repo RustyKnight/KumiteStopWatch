@@ -200,9 +200,11 @@ public class CutoutProgressView: UIView {
 		case .Stopped:
 			start()
 		case .Running:
-			fallthrough
+			progressLayer.pauseAnimation()
+			animationStateMonitor.paused()
 		case .Paused:
-			animationStateMonitor.pauseOrResume(progressLayer)
+			progressLayer.resumeAnimation()
+			animationStateMonitor.running()
 		}
 	}
 	

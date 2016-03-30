@@ -127,8 +127,6 @@ public extension KZGraphicsUtilities {
 		let width = size.width
 		let height = size.height
 		
-		print(width, height)
-		
 		UIGraphicsBeginImageContextWithOptions(
 			CGSize(width: width, height: height),
 			false,
@@ -144,14 +142,10 @@ public extension KZGraphicsUtilities {
 		let cgColors = colors.map {
 			$0.CGColor
 		}
-		print(floatLocations)
 		let gradient = CGGradientCreateWithColors(colorSpace, cgColors, floatLocations)
 		
 		let center = size.centerOf()
 		let radius = size.minDimension() / 2.0
-		
-		print(center)
-		print(radius)
 		
 		CGContextDrawRadialGradient(
 			ctx,

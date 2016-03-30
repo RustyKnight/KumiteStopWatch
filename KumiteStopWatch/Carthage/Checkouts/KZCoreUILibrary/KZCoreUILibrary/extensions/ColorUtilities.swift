@@ -129,18 +129,23 @@ public struct ColorBand {
 	The fractions should be ordered from lowest or highest
 	*/
 	public func colorAt(progress: Double) -> UIColor {
-		let indicies = locationIndiciesFrom(forProgress: progress)
-		let fromFraction = locations[indicies[0]]
-		let toFraction = locations[indicies[1]]
-		
-		let fromColor = colors[indicies[0]]
-		let toColor = colors[indicies[1]]
-		
-		let max = toFraction - fromFraction
-		let value = progress - fromFraction
-		let weight = Double(value) / Double(max)
-		
-		let blend = fromColor.blend(with: toColor, by: weight)
+		var blend = UIColor.blackColor()
+		if colors.count > 1 && locations.count > 1 {
+			let indicies = locationIndiciesFrom(forProgress: progress)
+			let fromFraction = locations[indicies[0]]
+			let toFraction = locations[indicies[1]]
+			
+			let fromColor = colors[indicies[0]]
+			let toColor = colors[indicies[1]]
+			
+			let max = toFraction - fromFraction
+			let value = progress - fromFraction
+			let weight = Double(value) / Double(max)
+			
+			blend = fromColor.blend(with: toColor, by: weight)
+		} else if colors.count == 1 && locations.count == 1 {
+			blend = colors[0]
+		}
 		return blend
 	}
 	

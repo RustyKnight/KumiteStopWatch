@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable public class PieSliceView: UIView {
+@IBDesignable public class TimeLineProgressView: UIView {
 	
 	private let conicalFillPieSliceProgressLayer: ConicalFillPieSliceProgressLayer = ConicalFillPieSliceProgressLayer()
 	private let overlayLayer: OverlayLayer = OverlayLayer()
@@ -128,6 +128,11 @@ import UIKit
 	@IBInspectable public var overlayFillScale: Float {
 		set(newValue) {
 			overlayLayer.fillScale = newValue
+			tickLayer.radiusScale = newValue
+			for tickLayer in timeLineTickLayers {
+					tickLayer.radiusScale = newValue
+			}
+			setNeedsLayout()
 			setNeedsDisplay()
 		}
 		
@@ -136,7 +141,49 @@ import UIKit
 		}
 	}
 	
+	@IBInspectable public var tickFillColor: UIColor? {
+		set(newValue) {
+			if let color = newValue {
+				tickLayer.fillColor = color
+			} else {
+				tickLayer.fillColor = nil
+			}
+			setNeedsDisplay()
+		}
+		
+		get {
+			return tickLayer.fillColor
+		}
+	}
+	
+	@IBInspectable public var tickStrokeColor: UIColor? {
+		set(newValue) {
+			if let color = newValue {
+				tickLayer.strokeColor = color
+			} else {
+				tickLayer.strokeColor = nil
+			}
+			setNeedsDisplay()
+		}
+		
+		get {
+			return tickLayer.strokeColor
+		}
+	}
+	
+	public var timeLine: TimeLine? {
+		didSet {
+			updateTimeLine()
+		}
+	}
+	
 	private let animationStateMonitor: AnimationStateMonitor = AnimationStateMonitor()
+
+	private let textLayer: TextLayer = TextLayer()
+	private let tickLayer: TickLayer = TickLayer()
+	// This needs to be made into a list, but right now
+	// this is just a test
+	private var timeLineTickLayers: [TickLayer] = []
 	
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -150,6 +197,8 @@ import UIKit
 
 	func configure() {
 		backgroundColor = UIColor.blackColor()
+		
+		tickLayer.progress = 0.0
 
 		overlayLayer.fillColor = UIColor.blackColor().CGColor
 		overlayLayer.strokeColor = UIColor.darkGrayColor().CGColor
@@ -160,19 +209,58 @@ import UIKit
 		progressLineWidth = 1
 		progressStrokeColor = UIColor.whiteColor()
 		
-		conicalFillPieSliceProgressLayer.colors = [UIColor.greenColor(), UIColor.yellowColor(), UIColor.redColor()]
-		conicalFillPieSliceProgressLayer.locations = [0.0, 0.75, 1.0]
+		let colors = [UIColor.greenColor(), UIColor.yellowColor(), UIColor.redColor()]
+		let locations = [0.0, 0.75, 1.0]
+		conicalFillPieSliceProgressLayer.colors = colors
+		conicalFillPieSliceProgressLayer.locations = locations
+		
+		tickLayer.fillColors = colors
+		tickLayer.fillLocations = locations
 		
 		conicalFillPieSliceProgressLayer.frame = bounds
 		overlayLayer.frame = bounds
 		layer.addSublayer(conicalFillPieSliceProgressLayer)
 		layer.addSublayer(overlayLayer)
+
+		layer.addSublayer(tickLayer)
+		
+		timeLine = TimeLineBuilder()
+			.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.None)
+			.build()
+		updateTimeLine()
+		
+		textLayer.bounds = frame
+		layer.addSublayer(textLayer)
+	}
+	
+	func updateTimeLine() {
+		for tickLayer in timeLineTickLayers {
+			tickLayer.removeFromSuperlayer()
+		}
+		timeLineTickLayers.removeAll()
+		if let timeLine = timeLine {
+			for evt in timeLine.events {
+				let tick = TickLayer(timeLineEvent: evt)
+				tick.radiusScale = tickLayer.radiusScale
+				timeLineTickLayers.append(tick)
+				tick.frame = bounds
+				layer.addSublayer(tick)
+			}
+		}
+		setNeedsLayout()
+		setNeedsDisplay()
 	}
 
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		conicalFillPieSliceProgressLayer.frame = bounds
 		overlayLayer.frame = bounds
+		tickLayer.frame = bounds
+		textLayer.frame = bounds
+		
+		for tick in timeLineTickLayers {
+			tick.frame = bounds
+		}
 	}
 	
 	// This is test code for testing the basic animation, it doesn't really
@@ -180,7 +268,10 @@ import UIKit
 	// This would also relies on the concept of the timeline, which will be implemented
 	// later
 	func start() {
-		conicalFillPieSliceProgressLayer.animateProgressTo(1.0, withDurationOf:10, delegate: self)
+		let duration = 2.0 * 60.0
+		conicalFillPieSliceProgressLayer.animateProgressTo(1.0, withDurationOf:duration, delegate: self)
+		tickLayer.animateProgressTo(1.0, withDurationOf: duration)
+		textLayer.animateProgressTo(1.0, withDurationOf: duration)
 	}
 	
 	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -191,9 +282,15 @@ import UIKit
 		case .Stopped:
 			start()
 		case .Running:
-			fallthrough
+			conicalFillPieSliceProgressLayer.pauseAnimation()
+			tickLayer.pauseAnimation()
+			textLayer.pauseAnimation()
+			animationStateMonitor.paused()
 		case .Paused:
-			animationStateMonitor.pauseOrResume(conicalFillPieSliceProgressLayer)
+			conicalFillPieSliceProgressLayer.resumeAnimation()
+			tickLayer.resumeAnimation()
+			textLayer.resumeAnimation()
+			animationStateMonitor.running()
 		}
 	}
 	
@@ -246,7 +343,5 @@ class OverlayLayer: CAShapeLayer {
 		
 		path = UIBezierPath(ovalInRect: CGRect(x: centerX, y: centerY, width: scaledSize, height: scaledSize)).CGPath
 	}
-	
-	
 	
 }

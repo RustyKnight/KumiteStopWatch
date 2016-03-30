@@ -25,6 +25,10 @@ public extension CGFloat {
 	public var toRadians : CGFloat {
 		return CGFloat(self) * CGFloat(M_PI) / 180.0
 	}
+
+	public var toDegrees: CGFloat {
+		return self * 180.0 / CGFloat(M_PI)
+	}
 	
 	public var toDouble: Double {
 		return Double(self)

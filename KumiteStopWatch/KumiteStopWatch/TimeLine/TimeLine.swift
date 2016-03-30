@@ -6,18 +6,55 @@
 //  Copyright © 2016 KaiZen. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+public enum TimeLineAlert {
+	case None
+	case FlashBackground
+	case Vibrate
+	case Audio
+}
 
 public protocol TimeLineEvent {
-	func time() -> Double;
+	var location: Float {get}
+	var color: UIColor {get}
+	var alerts: [TimeLineAlert] {get}
+	
+}
+
+public struct DefaultTimeLineEvent: TimeLineEvent {
+	public let location: Float
+	public let color: UIColor
+	public let alerts: [TimeLineAlert]
 }
 
 // I'm wondering which of these is the best approach for a non-mutable
 // list of elements
 
 // This is certainly simpler, but doesn't allow for inheritency...
-public struct TimeLine<E: TimeLineEvent> {
-	public let events: [E]
+public struct TimeLine {
+	public let events: [TimeLineEvent]
+}
+
+public class TimeLineBuilder {
+	private var events: [TimeLineEvent] = []
+	
+	public func add(location location: Float, color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
+		add(timeLineEvent: DefaultTimeLineEvent(location: location, color: color, alerts: alerts))
+		return self
+	}
+	
+	public func add(timeLineEvent evt: TimeLineEvent) {
+		events.append(evt)
+	}
+	
+	public func build() -> TimeLine {
+		events.sortInPlace { (evt1, evt2) -> Bool in
+			return evt1.location > evt2.location
+		}
+		
+		return TimeLine(events: events)
+	}
 }
 
 //public protocol TimeLine {

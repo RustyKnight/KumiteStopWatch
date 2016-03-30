@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		700E42121CA9F55800F3D668 /* TickLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700E42111CA9F55800F3D668 /* TickLayer.swift */; };
+		700E42151CABAAB700F3D668 /* TextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700E42141CABAAB700F3D668 /* TextLayer.swift */; };
 		705983261C9D0311006B697A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983251C9D0311006B697A /* AppDelegate.swift */; };
 		705983281C9D0311006B697A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983271C9D0311006B697A /* ViewController.swift */; };
 		7059832B1C9D0311006B697A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 705983291C9D0311006B697A /* Main.storyboard */; };
@@ -25,7 +27,7 @@
 		709131251CA66C5600A009E9 /* KZCoreLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		709131261CA66C5600A009E9 /* KZCoreUILibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; };
 		709131271CA66C5600A009E9 /* KZCoreUILibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7091312C1CA7D40100A009E9 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091312B1CA7D40100A009E9 /* PieSliceView.swift */; };
+		7091312C1CA7D40100A009E9 /* TimeLineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091312B1CA7D40100A009E9 /* TimeLineProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		700E42111CA9F55800F3D668 /* TickLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickLayer.swift; sourceTree = "<group>"; };
+		700E42141CABAAB700F3D668 /* TextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayer.swift; sourceTree = "<group>"; };
 		705983221C9D0311006B697A /* KumiteStopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KumiteStopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		705983251C9D0311006B697A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		705983271C9D0311006B697A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 		7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreLibrary.framework; path = Carthage/Build/iOS/KZCoreLibrary.framework; sourceTree = "<group>"; };
 		7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreUILibrary.framework; path = Carthage/Build/iOS/KZCoreUILibrary.framework; sourceTree = "<group>"; };
 		709131221CA6574D00A009E9 /* ConicalFillPieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConicalFillPieSliceProgressLayer.swift; path = Layers/PieSlice/ConicalFillPieSliceProgressLayer.swift; sourceTree = "<group>"; };
-		7091312B1CA7D40100A009E9 /* PieSliceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
+		7091312B1CA7D40100A009E9 /* TimeLineProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		700E42131CABAA9E00F3D668 /* TextLayer */ = {
+			isa = PBXGroup;
+			children = (
+				700E42141CABAAB700F3D668 /* TextLayer.swift */,
+			);
+			name = TextLayer;
+			sourceTree = "<group>";
+		};
 		705983191C9D0311006B697A = {
 			isa = PBXGroup;
 			children = (
@@ -149,7 +161,8 @@
 				7059833E1C9D03EA006B697A /* CutoutProgressView.swift */,
 				705983401C9D0485006B697A /* OverlayCutout */,
 				705983431C9D0497006B697A /* PieSlice */,
-				7091312B1CA7D40100A009E9 /* PieSliceView.swift */,
+				700E42131CABAA9E00F3D668 /* TextLayer */,
+				7091312B1CA7D40100A009E9 /* TimeLineProgressView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -168,6 +181,7 @@
 				705983441C9D04A2006B697A /* PieSliceLayer.swift */,
 				705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */,
 				709131221CA6574D00A009E9 /* ConicalFillPieSliceProgressLayer.swift */,
+				700E42111CA9F55800F3D668 /* TickLayer.swift */,
 			);
 			name = PieSlice;
 			sourceTree = "<group>";
@@ -266,9 +280,11 @@
 				7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */,
 				705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */,
 				7059836E1C9FE924006B697A /* AnimationStateMonitor.swift in Sources */,
+				700E42151CABAAB700F3D668 /* TextLayer.swift in Sources */,
+				700E42121CA9F55800F3D668 /* TickLayer.swift in Sources */,
 				705983451C9D04A2006B697A /* PieSliceLayer.swift in Sources */,
 				705983281C9D0311006B697A /* ViewController.swift in Sources */,
-				7091312C1CA7D40100A009E9 /* PieSliceView.swift in Sources */,
+				7091312C1CA7D40100A009E9 /* TimeLineProgressView.swift in Sources */,
 				705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */,
 				7059833F1C9D03EA006B697A /* CutoutProgressView.swift in Sources */,
 				705983261C9D0311006B697A /* AppDelegate.swift in Sources */,

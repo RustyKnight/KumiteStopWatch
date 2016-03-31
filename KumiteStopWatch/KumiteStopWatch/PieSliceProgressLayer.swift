@@ -17,7 +17,7 @@ import KZCoreUILibrary
 	a means by which I can change the endAngle of the masked layer and have it
 	animate by using a property or other "progress" method
 */
-public class PieSliceProgressLayer: CALayer {
+public class PieSliceProgressLayer: CALayer, ProgressAnimatable {
 	
 	let maskedProgressLayer: PieSliceLayer = PieSliceLayer()
 	let progressLayer: PieSliceLayer = PieSliceLayer()

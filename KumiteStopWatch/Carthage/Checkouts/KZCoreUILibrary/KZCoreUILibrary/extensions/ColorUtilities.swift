@@ -85,6 +85,36 @@ public extension UIColor {
 	}
 }
 
+public struct ColorBandEntry {
+	public let color: UIColor
+	public let location: Double
+	
+	public init(withColor: UIColor, at: Double) {
+		self.color = withColor
+		self.location = at
+	}
+}
+
+public struct ColorBandBuilder {
+	private var entries: [ColorBandEntry] = []
+	
+	public init() {
+	}
+	
+	public mutating func add(color color:UIColor, at: Double) -> ColorBandBuilder {
+		entries.append(ColorBandEntry(withColor: color, at: at))
+		return self
+	}
+	
+	public mutating func build() -> ColorBand {
+		entries.sortInPlace { (entry1, entry2) -> Bool in
+			return entry1.location > entry2.location
+		}
+		
+		return ColorBand(with: entries)
+	}
+}
+
 /**
 	A ColorBand is a group of colors and locations, which can be blended
 	over a normalised period (0-1)
@@ -92,12 +122,18 @@ public extension UIColor {
 	This is basically a color gradient generator
  */
 public struct ColorBand {
-	public let colors: [UIColor]
-	public let locations: [Double]
+	public let entries: [ColorBandEntry]
 	
-	public init(colors: [UIColor], locations: [Double]) {
-		self.colors = colors
-		self.locations = locations
+	public init(withColors colors: [UIColor], andLocations locations: [Double]) {
+		var tempEntries: [ColorBandEntry] = []
+		for index in 0...colors.count {
+			tempEntries.append(ColorBandEntry(withColor: colors[index], at: locations[index]))
+		}
+		entries = tempEntries
+	}
+	
+	public init(with entries: [ColorBandEntry]) {
+		self.entries = entries;
 	}
 	
 	/**
@@ -106,12 +142,12 @@ public struct ColorBand {
 	func locationIndiciesFrom(forProgress progress:Double) -> [Int] {
 		var range: [Int] = []
 		var startPoint = 0
-		while startPoint < locations.count && locations[startPoint] <= progress {
+		while startPoint < entries.count && entries[startPoint].location <= progress {
 			startPoint += 1
 		}
 		
-		if startPoint >= locations.count {
-			startPoint = locations.count - 1
+		if startPoint >= entries.count {
+			startPoint = entries.count - 1
 		} else if (startPoint == 0) {
 			startPoint = 1
 		}
@@ -130,21 +166,21 @@ public struct ColorBand {
 	*/
 	public func colorAt(progress: Double) -> UIColor {
 		var blend = UIColor.blackColor()
-		if colors.count > 1 && locations.count > 1 {
+		if entries.count > 1 {
 			let indicies = locationIndiciesFrom(forProgress: progress)
-			let fromFraction = locations[indicies[0]]
-			let toFraction = locations[indicies[1]]
+			let fromFraction = entries[indicies[0]].location
+			let toFraction = entries[indicies[1]].location
 			
-			let fromColor = colors[indicies[0]]
-			let toColor = colors[indicies[1]]
+			let fromColor = entries[indicies[0]].color
+			let toColor = entries[indicies[1]].color
 			
 			let max = toFraction - fromFraction
 			let value = progress - fromFraction
 			let weight = Double(value) / Double(max)
 			
 			blend = fromColor.blend(with: toColor, by: weight)
-		} else if colors.count == 1 && locations.count == 1 {
-			blend = colors[0]
+		} else if entries.count == 1 {
+			blend = entries[0].color
 		}
 		return blend
 	}

@@ -42,6 +42,12 @@ public extension KZGraphicsUtilities {
 	The intention is to return an image which is completely filled
 	*/
 	public class func createConicalGraidentOf(size size: CGSize, withColors colors: [UIColor], withLocations locations: [Double]) -> UIImage {
+//		let band = ColorBand(withColors: colors, andLocations: locations)
+		let band = ColorBand(withColors: colors, andLocations: locations)
+		return createConicalGraidentOf(size: size, withColorBand: band)
+	}
+	
+	public class func createConicalGraidentOf(size size: CGSize, withColorBand band: ColorBand) -> UIImage {
 		
 		var currentAngle: CGFloat = 0.0
 		
@@ -69,7 +75,6 @@ public extension KZGraphicsUtilities {
 		CGContextSetAllowsAntialiasing(ctx, true)
 		CGContextSetShouldAntialias(ctx, true)
 		
-		let band = ColorBand(colors: colors, locations: locations)
 		for i in 0.0.stride(to: Double(limit), by: 0.001) {
 			
 			let arcStartAngle: CGFloat = -90.0.toRadians.toCGFloat

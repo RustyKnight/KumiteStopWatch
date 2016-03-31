@@ -26,13 +26,13 @@ public enum AnimationState {
 // based on my reading it does)
 extension CALayer {
 	
-	func pauseAnimation() {
+	public func pauseAnimation() {
 		let pausedTime = convertTime(CACurrentMediaTime(), fromLayer: nil)
 		timeOffset = pausedTime
 		speed = 0.0
 	}
 	
-	func resumeAnimation() {
+	public func resumeAnimation() {
 		speed = 1.0
 		let pausedTime = timeOffset
 		timeOffset = 0.0

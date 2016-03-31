@@ -121,26 +121,6 @@ public class CutoutProgressView: UIView {
 		}
 	}
 	
-	@IBInspectable public var colors: [UIColor]! {
-		set(newValue) {
-			progressLayer.colors = newValue
-		}
-		
-		get {
-			return progressLayer.colors
-		}
-	}
-
-	@IBInspectable public var locations: [Double]! {
-		set(newValue) {
-			progressLayer.locations = newValue
-		}
-		
-		get {
-			return progressLayer.locations
-		}
-	}
-	
 	private let animationStateMonitor: AnimationStateMonitor = AnimationStateMonitor()
 	
 	public required init?(coder aDecoder: NSCoder) {
@@ -155,16 +135,6 @@ public class CutoutProgressView: UIView {
 	
 	func configure() {
 		backgroundColor = UIColor.blackColor()
-		progressLayer.colors = [
-			UIColor.greenColor(),
-			UIColor.yellowColor(),
-			UIColor.redColor()]
-		progressLayer.locations = [
-			0.0,
-			0.75,
-			1.0]
-		
-		backgroundColor = UIColor.darkGrayColor()
 		
 		// Cutout based properties
 		cutoutThickness = 25.0

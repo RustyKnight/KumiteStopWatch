@@ -10,9 +10,14 @@ import UIKit
 import KZCoreLibrary
 import KZCoreUILibrary
 
-public class TextLayer: CALayer {
+public class TextLayer: CALayer, ProgressAnimatable, Colorful {
 	
 	public var progress: CGFloat = 0
+	public var colorBand: ColorBand? {
+		didSet {
+			setNeedsDisplay()
+		}
+	}
 	var animationDuration: Double = 0
 	
 	public required init?(coder aDecoder: NSCoder) {
@@ -30,6 +35,7 @@ public class TextLayer: CALayer {
 		if let layer = layer as? TextLayer {
 			progress = layer.progress
 			animationDuration = layer.animationDuration
+			colorBand = layer.colorBand
 			needsDisplayOnBoundsChange = true
 		}
 	}
@@ -85,7 +91,7 @@ public class TextLayer: CALayer {
 	}
 
 	public override func drawInContext(ctx: CGContext) {
-		let radius = bounds.minDimension() / 2.0.toCGFloat
+		let radius = frame.minDimension() / 2.0.toCGFloat
 
 		CGContextSaveGState(ctx)
 		
@@ -101,9 +107,14 @@ public class TextLayer: CALayer {
 		
 		let textValue = formatDurationAt(progress.toDouble)
 		
+		var foregroundColor = UIColor.whiteColor()
+		if let colorBand = colorBand {
+			foregroundColor = colorBand.colorAt(progress.toDouble)
+		}
+		
 		let aFont = UIFont(name: "Helvetica Neue", size: radius / 4.0)
 		// create a dictionary of attributes to be applied to the string
-		let attr:CFDictionaryRef = [NSFontAttributeName:aFont!,NSForegroundColorAttributeName:UIColor.whiteColor()]
+		let attr:CFDictionaryRef = [NSFontAttributeName:aFont!,NSForegroundColorAttributeName:foregroundColor]
 		// create the attributed string
 		let text = CFAttributedStringCreate(nil, textValue, attr)
 		// create the line of text
@@ -125,7 +136,7 @@ public class TextLayer: CALayer {
 		CGContextRestoreGState(ctx)
 	}
 	
-	public func animateProgressTo(progress: Double, withDurationOf duration:Double) {
+	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
 		removeAnimationForKey("progress")
 		
 		let anim = CABasicAnimation(keyPath: "progress")

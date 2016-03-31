@@ -11,15 +11,9 @@ import KZCoreUILibrary
 import QuartzCore
 
 
-public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer {
-	
-	public var colors: [UIColor] = [UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor()] {
-		didSet {
-			invalidateBuffer()
-		}
-	}
-	
-	public var locations: [Double] = [0.0, 0.5, 1.0]{
+public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer, Colorful {
+
+	public var colorBand: ColorBand? {
 		didSet {
 			invalidateBuffer()
 		}
@@ -51,18 +45,19 @@ public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer {
 extension ConicalFillPieSliceProgressLayer: PieSliceProgressLayerDelegate {
 	public func contentsFor(layer: PieSliceProgressLayer) -> CGImage? {
 		if buffer == nil {
-//			let diameter = bounds.minDimension()
-			let size = bounds.size
-			let mask = KZGraphicsUtilities.createRadialGraidentOf(
-				size: size,
-				withColors: [UIColor.blackColor(), UIColor.whiteColor()],
-				withLocations: [0.75, 1.0])
-			let master = KZGraphicsUtilities.createConicalGraidentOf(
-				size: size,
-				withColors: colors,
-				withLocations: locations)
-			
-			buffer = master.maskWith(mask)
+			if let colorBand = colorBand {
+				//			let diameter = bounds.minDimension()
+				let size = bounds.size
+				let mask = KZGraphicsUtilities.createRadialGraidentOf(
+					size: size,
+					withColors: [UIColor.blackColor(), UIColor.whiteColor()],
+					withLocations: [0.75, 1.0])
+				let master = KZGraphicsUtilities.createConicalGraidentOf(
+					size: size,
+					withColorBand: colorBand)
+				
+				buffer = master.maskWith(mask)
+			}
 		}
 		var image: CGImage?
 		if let buffer = buffer {

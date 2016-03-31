@@ -7,7 +7,11 @@
 //
 
 import UIKit
+import KZCoreUILibrary
 
+/**
+The support alert types
+*/
 public enum TimeLineAlert {
 	case None
 	case FlashBackground
@@ -15,15 +19,8 @@ public enum TimeLineAlert {
 	case Audio
 }
 
-public protocol TimeLineEvent {
-	var location: Float {get}
-	var color: UIColor {get}
-	var alerts: [TimeLineAlert] {get}
-	
-}
-
-public struct DefaultTimeLineEvent: TimeLineEvent {
-	public let location: Float
+public struct TimeLineEvent {
+	public let location: Double
 	public let color: UIColor
 	public let alerts: [TimeLineAlert]
 }
@@ -33,14 +30,43 @@ public struct DefaultTimeLineEvent: TimeLineEvent {
 
 // This is certainly simpler, but doesn't allow for inheritency...
 public struct TimeLine {
+	public let name: String
+	public let duration: NSTimeInterval
 	public let events: [TimeLineEvent]
+	public let colorBand: ColorBand
+	
+	public init(withName: String, withDuration: NSTimeInterval, andEvents:[TimeLineEvent]) {
+		self.name = withName
+		self.duration = withDuration
+		self.events = andEvents
+		
+		var colorBandEntries: [ColorBandEntry] = []
+		for event in events {
+			colorBandEntries.append(ColorBandEntry(withColor: event.color, at: event.location))
+		}
+		
+		colorBand = ColorBand(with: colorBandEntries)
+	}
 }
 
+/**
+Builder pattern for building time lines
+*/
 public class TimeLineBuilder {
 	private var events: [TimeLineEvent] = []
+	private var duration: NSTimeInterval
+	private var name: String
 	
-	public func add(location location: Float, color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
-		add(timeLineEvent: DefaultTimeLineEvent(location: location, color: color, alerts: alerts))
+	public init(withName name: String, withDurationOf: NSTimeInterval, startWithColor: UIColor, endWithColor: UIColor) {
+		self.duration = withDurationOf
+		self.name = name
+		
+		add(location: 0.0, color: startWithColor, alerts: .None)
+		add(location: 1.0, color: endWithColor, alerts: .None)
+	}
+	
+	public func add(location location: Double, color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
+		add(timeLineEvent: TimeLineEvent(location: location, color: color, alerts: alerts))
 		return self
 	}
 	
@@ -50,10 +76,10 @@ public class TimeLineBuilder {
 	
 	public func build() -> TimeLine {
 		events.sortInPlace { (evt1, evt2) -> Bool in
-			return evt1.location > evt2.location
+			return evt1.location < evt2.location
 		}
 		
-		return TimeLine(events: events)
+		return TimeLine(withName: name, withDuration: duration, andEvents: events)
 	}
 }
 

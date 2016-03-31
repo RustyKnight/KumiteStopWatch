@@ -13,7 +13,13 @@ import KZCoreUILibrary
 	The intention of the TickLayer is to provide a simple shape which can point to some
 	point on a circle
 */
-public class TickLayer: CALayer {
+public class TickLayer: CALayer, ProgressAnimatable, Colorful {
+	
+	public var colorBand: ColorBand? {
+		didSet {
+			setNeedsDisplay()
+		}
+	}
 	
 	public var fillColor: UIColor? = UIColor.redColor() {
 		didSet {
@@ -59,9 +65,6 @@ public class TickLayer: CALayer {
 		}
 	}
 	
-	public var fillColors: [UIColor]?
-	public var fillLocations: [Double]?
-	
 	public var timeLineEvent: TimeLineEvent? {
 		didSet {
 			configureTimeLineEvent()
@@ -105,7 +108,7 @@ public class TickLayer: CALayer {
 	
 	func configureTimeLineEvent() {
 		if let timeLineEvent = timeLineEvent {
-			progress = timeLineEvent.location
+			progress = timeLineEvent.location.toFloat
 			fillColor = timeLineEvent.color
 			strokeColor = timeLineEvent.color.darken(by: 0.5)
 		} else {
@@ -181,7 +184,7 @@ public class TickLayer: CALayer {
 		CGContextTranslateCTM(ctx, -center.x, -center.y)
 		
 		// Save the next state
-		CGContextSaveGState(ctx)
+//		CGContextSaveGState(ctx)
 
 		// The point along the circle, this is where we need to point to
 		let p1 = CGPoint(
@@ -213,32 +216,29 @@ public class TickLayer: CALayer {
 		CGContextSetLineWidth(ctx, 1.0)
 		CGContextDrawPath(ctx, CGPathDrawingMode.FillStroke)
 		
-		CGContextRestoreGState(ctx)
+//		CGContextRestoreGState(ctx)
 		CGContextRestoreGState(ctx)
 		
 	}
 	
-	public func animateProgressTo(progress: Double, withDurationOf duration:Double) {
+	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
 		removeAnimationForKey("progress")
 		removeAnimationForKey("fillEffect")
 		
-		if let fillColors = fillColors {
-			if let fillLocations = fillLocations {
-				let keyFrameAnim = CAKeyframeAnimation(keyPath: "fillColor")
+		if let colorBand = colorBand {
+			let keyFrameAnim = CAKeyframeAnimation(keyPath: "fillColor")
 				
-				let colorBand = ColorBand(colors: fillColors, locations: fillLocations)
-				var colors: [UIColor] = []
-				var locations: [Double] = []
-				for i in 0.0.stride(to: 1.0, by: 0.01) {
-					colors.append(colorBand.colorAt(i))
-					locations.append(i)
-				}
-				
-				keyFrameAnim.values = colors
-				keyFrameAnim.keyTimes = locations
-				keyFrameAnim.duration = duration
-				addAnimation(keyFrameAnim, forKey: "fillEffect")
+			var colors: [UIColor] = []
+			var locations: [Double] = []
+			for i in 0.0.stride(to: 1.0, by: 0.01) {
+				colors.append(colorBand.colorAt(i))
+				locations.append(i)
 			}
+				
+			keyFrameAnim.values = colors
+			keyFrameAnim.keyTimes = locations
+			keyFrameAnim.duration = duration
+			addAnimation(keyFrameAnim, forKey: "fillEffect")
 		}
 		
 		let anim = CABasicAnimation(keyPath: "progress")

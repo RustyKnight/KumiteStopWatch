@@ -133,7 +133,7 @@ public class TickLayer: CALayer, Animatable, Colorful {
 	*/
 	public override func actionForKey(event: String) -> CAAction? {
 		var action: CAAction?
-		if event == "progress" || event == "angle" || event == "fillColor" {
+		if event == "progress" || event == "angle" || event == "fillColor" || event == "fillEffect" {
 			action = self.animationForKey(event)
 		} else {
 			action = super.actionForKey(event)
@@ -147,7 +147,7 @@ public class TickLayer: CALayer, Animatable, Colorful {
 	*/
 	public override class func needsDisplayForKey(key: String) -> Bool {
 		var needsDisplay = false
-		if key == "progress" || key == "angle" || key == "fillColor" {
+		if key == "progress" || key == "angle" || key == "fillColor" || key == "fillEffect" {
 			needsDisplay = true
 		} else {
 			needsDisplay = super.needsDisplayForKey(key)
@@ -227,14 +227,19 @@ public class TickLayer: CALayer, Animatable, Colorful {
 		
 		if let colorBand = colorBand {
 			let keyFrameAnim = CAKeyframeAnimation(keyPath: "fillColor")
-				
+
 			var colors: [UIColor] = []
 			var locations: [Double] = []
 			for i in 0.0.stride(to: 1.0, by: 0.01) {
 				colors.append(colorBand.colorAt(i))
 				locations.append(i)
 			}
-				
+			
+//			for colorBandEntry in colorBand.entries {
+//				colors.append(colorBandEntry.color)
+//				locations.append(colorBandEntry.location)
+//			}
+			
 			keyFrameAnim.values = colors
 			keyFrameAnim.keyTimes = locations
 			keyFrameAnim.duration = duration

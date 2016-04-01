@@ -38,6 +38,16 @@ public class TextLayer: ProgressLayer, Animatable, Colorful {
 		}
 	}
 	
+	public override class func needsDisplayForKey(key: String) -> Bool {
+		var needsDisplay = false
+		if key == "progress" {
+			needsDisplay = true
+		} else {
+			needsDisplay = super.needsDisplayForKey(key)
+		}
+		return needsDisplay
+	}
+	
 	func formatDurationAt(progress: Double) -> String {
 		
 		let time = animationDuration * progress

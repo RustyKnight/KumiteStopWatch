@@ -26,15 +26,6 @@ public class ProgressLayer: CALayer {
 			progress = layer.progress
 		}
 	}
-
-//	public override func animationForKey(key: String) -> CAAnimation? {
-//		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
-//		anim.fromValue = presentationLayer()?.valueForKey(key)
-//		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-//		anim.duration = 0.5
-//		
-//		return anim
-//	}
 	
 	/*
 	Override actionForKey: and return a CAAnimation that prepares the animation for that property.
@@ -48,19 +39,5 @@ public class ProgressLayer: CALayer {
 			action = super.actionForKey(event)
 		}
 		return action
-	}
-	
-	/*
-	Finally we also need to override needsDisplayForKey: to tell Core Animation that changes to our
-	progress property will require a redraw.
-	*/
-	public override class func needsDisplayForKey(key: String) -> Bool {
-		var needsDisplay = false
-		if key == "progress" {
-			needsDisplay = true
-		} else {
-			needsDisplay = super.needsDisplayForKey(key)
-		}
-		return needsDisplay
 	}
 }

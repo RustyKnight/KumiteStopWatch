@@ -323,7 +323,7 @@ import KZCoreUILibrary
 	
 	public func stop(andReset reset: Bool = false) {
 		animationManager.stop(andReset: reset)
-		overlayLayer.stopAnimation()
+		overlayLayer.stopAnimation(andReset: reset)
 		stopWatchStateDidChange()
 	}
 	
@@ -382,6 +382,14 @@ class OverlayLayer: CAShapeLayer {
 		configure()
 	}
 	
+	override init(layer: AnyObject) {
+		super.init(layer: layer)
+		if let layer = layer as? OverlayLayer {
+			fillScale = layer.fillScale
+			timeLine = layer.timeLine
+		}
+	}
+	
 	func configure() {
 		fillColor = UIColor.blackColor().CGColor
 		strokeColor = UIColor.darkGrayColor().CGColor
@@ -401,29 +409,11 @@ class OverlayLayer: CAShapeLayer {
 		path = UIBezierPath(ovalInRect: CGRect(x: centerX, y: centerY, width: scaledSize, height: scaledSize)).CGPath
 	}
 	
-	override func actionForKey(event: String) -> CAAction? {
-		var action: CAAction?
-		if event == "fillColor" {
-			action = self.animationForKey(event)
-		} else {
-			action = super.actionForKey(event)
-		}
-		return action
-	}
-	
-	override class func needsDisplayForKey(key: String) -> Bool {
-		var needsDisplay = false
-		if key == "fillColor" {
-			needsDisplay = true
-		} else {
-			needsDisplay = super.needsDisplayForKey(key)
-		}
-		return needsDisplay
-	}
-	
 	func startAnimation() {
 		
 		removeAnimationForKey("shadowOpacity")
+		removeAnimationForKey("fillColor")
+		removeAnimationForKey("progress")
 
 		if let timeLine = timeLine {
 			
@@ -474,17 +464,14 @@ class OverlayLayer: CAShapeLayer {
 		anim.autoreverses = true
 		anim.duration = 4.0
 		anim.repeatCount = MAXFLOAT
-		//		anim.removedOnCompletion = false
-		//		anim.additive = true
-		//		anim.fillMode = kCAFillModeForwards
 		addAnimation(anim, forKey: "shadowOpacity")
-		
 	}
 	
-	func stopAnimation() {
+	func stopAnimation(andReset reset: Bool) {
 
-		removeAnimationForKey("fillColor")
 		removeAnimationForKey("shadowOpacity")
+		removeAnimationForKey("fillColor")
+		removeAnimationForKey("progress")
 		
 	}
 	

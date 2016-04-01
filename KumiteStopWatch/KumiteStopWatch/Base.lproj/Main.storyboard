@@ -73,10 +73,20 @@
                                             <action selector="startPauseButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="RxH-Sn-wPc"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-bf-eMK">
+                                        <rect key="frame" x="8" y="480" width="54" height="34"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="resetButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="YxG-4A-pX6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="VzS-O4-2l4" firstAttribute="trailing" secondItem="rw2-lK-dpp" secondAttribute="trailingMargin" id="2v5-vZ-pg0"/>
+                                    <constraint firstItem="yj9-bf-eMK" firstAttribute="bottom" secondItem="rw2-lK-dpp" secondAttribute="bottomMargin" id="BMs-Fc-KVl"/>
+                                    <constraint firstItem="yj9-bf-eMK" firstAttribute="leading" secondItem="rw2-lK-dpp" secondAttribute="leadingMargin" id="cKd-6H-yYj"/>
                                     <constraint firstItem="VzS-O4-2l4" firstAttribute="bottom" secondItem="rw2-lK-dpp" secondAttribute="bottomMargin" id="e0b-50-y5q"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -129,8 +139,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="resetButton" destination="yj9-bf-eMK" id="L59-U6-1WJ"/>
                         <outlet property="startPauseButton" destination="VzS-O4-2l4" id="2Le-9Y-n7Y"/>
-                        <outlet property="stopWatchView" destination="rw2-lK-dpp" id="iug-sT-XOw"/>
+                        <outlet property="stopWatchView" destination="rw2-lK-dpp" id="4yB-CC-QUX"/>
                         <outlet property="titleLabel" destination="N2o-hB-A5h" id="Tip-cO-EG9"/>
                     </connections>
                 </viewController>

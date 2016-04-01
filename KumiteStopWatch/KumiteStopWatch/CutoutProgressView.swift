@@ -121,7 +121,7 @@ public class CutoutProgressView: UIView {
 		}
 	}
 	
-	private let animationStateMonitor: AnimationStateMonitor = AnimationStateMonitor()
+	private let animationManager: AnimationManager = AnimationManager()
 	
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -135,6 +135,8 @@ public class CutoutProgressView: UIView {
 	
 	func configure() {
 		backgroundColor = UIColor.blackColor()
+		
+		animationManager.animatables.append(progressLayer)
 		
 		// Cutout based properties
 		cutoutThickness = 25.0
@@ -154,38 +156,25 @@ public class CutoutProgressView: UIView {
 		cutoutLayer.frame = bounds
 	}
 	
-	// This is test code for testing the basic animation, it doesn't really
-	// belong here, but should probably be part of the contract with the view controller
-	// This would also relies on the concept of the timeline, which will be implemented
-	// later
-	func start() {
-		progressLayer.animateProgressTo(1.0, withDurationOf:2.0 * 60.0, delegate: self)
-	}
-	
 	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		super.touchesBegan(touches, withEvent: event)
 
-		print("state = \(animationStateMonitor.currentState())")
-		switch (animationStateMonitor.currentState()) {
+		switch (animationManager.currentState()) {
 		case .Stopped:
-			start()
+			animationManager.start(withDurationOf: 2.0 * 6.0, withDelegate: self)
 		case .Running:
-			progressLayer.pauseAnimation()
-			animationStateMonitor.paused()
+			animationManager.pause()
 		case .Paused:
-			progressLayer.resumeAnimation()
-			animationStateMonitor.running()
+			animationManager.resume()
 		}
 	}
 	
 	public override func animationDidStart(anim: CAAnimation) {
-		animationStateMonitor.started()
-		print("Started; state = \(animationStateMonitor.currentState())")
+		print("Started; state = \(animationManager.currentState())")
 	}
 	
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		animationStateMonitor.stopped()
-		print("Stopped; state = \(animationStateMonitor.currentState())")
+		print("Stopped; state = \(animationManager.currentState())")
 	}
 
 }

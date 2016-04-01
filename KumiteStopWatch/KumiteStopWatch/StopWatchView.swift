@@ -158,14 +158,14 @@ import KZCoreUILibrary
 		}
 	}
 	
-	private let animationStateMonitor: AnimationStateMonitor = AnimationStateMonitor()
+	private let animationManager: AnimationManager = AnimationManager()
 
 	private let textLayer: TextLayer = TextLayer()
 	private let tickLayer: TickLayer = TickLayer()
 
 	private var timeLineTickLayers: [TickLayer] = []
 	
-	private var animtables: [ProgressAnimatable] = []
+//	private var animtables: [ProgressAnimatable] = []
 	private var colorfuls: [Colorful] = []
 	
 	public required init?(coder aDecoder: NSCoder) {
@@ -181,9 +181,9 @@ import KZCoreUILibrary
 	func configure() {
 		backgroundColor = UIColor.blackColor()
 		
-		animtables.append(conicalFillPieSliceProgressLayer)
-		animtables.append(tickLayer)
-		animtables.append(textLayer)
+		animationManager.animatables.append(conicalFillPieSliceProgressLayer)
+		animationManager.animatables.append(tickLayer)
+		animationManager.animatables.append(textLayer)
 		
 		colorfuls.append(textLayer)
 		colorfuls.append(tickLayer)
@@ -257,37 +257,37 @@ import KZCoreUILibrary
 		}
 	}
 	
-	public func pauseResume() {
-		switch (animationStateMonitor.currentState()) {
-		case .Stopped:
-			start()
-		case .Running:
-			conicalFillPieSliceProgressLayer.pauseAnimation()
-			tickLayer.pauseAnimation()
-			textLayer.pauseAnimation()
-			animationStateMonitor.paused()
-			stopWatchStateDidChange()
-		case .Paused:
-			conicalFillPieSliceProgressLayer.resumeAnimation()
-			tickLayer.resumeAnimation()
-			textLayer.resumeAnimation()
-			animationStateMonitor.running()
-			stopWatchStateDidChange()
-		}
-	}
-	
 	public func currentAnimationState() -> AnimationState {
-		return animationStateMonitor.currentState()
+		return animationManager.currentState()
 	}
 	
-	func start() {
-		if let timeLine = timeLine {
-			let duration = timeLine.duration
-			for animtable in animtables {
-				animtable.animateProgressTo(1.0, withDurationOf: duration, delegate: self)
-			}
-		}
-	}
+//	public func pauseResume() {
+//		switch (animationStateMonitor.currentState()) {
+//		case .Stopped:
+//			start()
+//		case .Running:
+//			conicalFillPieSliceProgressLayer.pauseAnimation()
+//			tickLayer.pauseAnimation()
+//			textLayer.pauseAnimation()
+//			animationStateMonitor.paused()
+//			stopWatchStateDidChange()
+//		case .Paused:
+//			conicalFillPieSliceProgressLayer.resumeAnimation()
+//			tickLayer.resumeAnimation()
+//			textLayer.resumeAnimation()
+//			animationStateMonitor.running()
+//			stopWatchStateDidChange()
+//		}
+//	}
+//	
+//	func start() {
+//		if let timeLine = timeLine {
+//			let duration = timeLine.duration
+//			for animtable in animtables {
+//				animtable.animateProgressTo(1.0, withDurationOf: duration, delegate: self)
+//			}
+//		}
+//	}
 	
 	// This is test code for testing the basic animation, it doesn't really
 	// belong here, but should probably be part of the contract with the view controller
@@ -313,21 +313,47 @@ import KZCoreUILibrary
 //		}
 //	}
 	
-	public override func animationDidStart(anim: CAAnimation) {
-		animationStateMonitor.started()
+	public func start() {
+		if let timeLine = timeLine {
+			animationManager.start(withDurationOf: timeLine.duration, withDelegate: self)
+		}
 		overlayLayer.startAnimation()
-		stopWatchStateDidChange()
 	}
 	
-	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		animationStateMonitor.stopped()
+	public func stop(andReset reset: Bool = false) {
+		animationManager.stop(andReset: reset)
 		overlayLayer.stopAnimation()
 		stopWatchStateDidChange()
 	}
 	
+	public func pause() {
+		animationManager.pause()
+		stopWatchStateDidChange()
+	}
+	
+	public func resume() {
+		animationManager.resume()
+		stopWatchStateDidChange()
+	}
+	
+	public func reset() {
+		if currentAnimationState() == .Paused {
+			resume()
+		}
+		stop(andReset: true)
+	}
+	
+	public override func animationDidStart(anim: CAAnimation) {
+		stopWatchStateDidChange()
+	}
+	
+	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+		stop()
+	}
+	
 	func stopWatchStateDidChange() {
 		if let stopWatchDelegate = stopWatchDelegate {
-			stopWatchDelegate.stopWatch(self, stateDidChange: animationStateMonitor.currentState())
+			stopWatchDelegate.stopWatch(self, stateDidChange: animationManager.currentState())
 		}
 	}
 

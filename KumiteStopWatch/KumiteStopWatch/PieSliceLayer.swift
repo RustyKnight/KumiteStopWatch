@@ -67,14 +67,14 @@ public class PieSliceLayer: CALayer {
 		}
 	}
 	
-	public override func animationForKey(key: String) -> CAAnimation? {
-		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
-		anim.fromValue = presentationLayer()?.valueForKey(key)
-		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		anim.duration = 0.5
-		
-		return anim
-	}
+//	public override func animationForKey(key: String) -> CAAnimation? {
+//		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
+//		anim.fromValue = presentationLayer()?.valueForKey(key)
+//		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+//		anim.duration = 0.5
+//		
+//		return anim
+//	}
 	
 	/*
 		Override actionForKey: and return a CAAnimation that prepares the animation for that property. 

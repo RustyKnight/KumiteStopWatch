@@ -53,8 +53,18 @@ This means that the caller is still responsible for managing so of the state, bu
 the core functionality is mainatined by a single class, rather then any number of 
 flags and algorithims
 */
-public class AnimationStateMonitor {
+public class AnimationManager {
+	
+	public var animatables: [Animatable] = []
+	
 	private var state: AnimationState = .Stopped
+	
+	public init() {
+	}
+	
+	public init(withAnimatabes animatables: [Animatable]) {
+		self.animatables = animatables
+	}
 	
 //	public func pauseOrResume(layer: CALayer!) {
 //		switch (state) {
@@ -69,23 +79,64 @@ public class AnimationStateMonitor {
 //		}
 //	}
 	
-	public func paused() {
-		state = .Paused
-	}
-	
-	public func running() {
-		state = .Running
-	}
-	
-	public func started() {
-		state = .Running
-	}
-	
-	public func stopped() {
-		state = .Stopped
-	}
+//	public func paused() {
+//		state = .Paused
+//	}
+//	
+//	public func running() {
+//		state = .Running
+//	}
+//	
+//	public func started() {
+//		state = .Running
+//	}
+//	
+//	public func stopped() {
+//		state = .Stopped
+//	}
 	
 	public func currentState() -> AnimationState {
 		return state
 	}
+
+	func start(withDurationOf duration: Double, withDelegate delegate: AnyObject? = nil) {
+		state = .Running
+		for animtable in animatables {
+			animtable.startAnimation(withDurationOf: duration, withDelegate: delegate)
+		}
+	}
+	
+	func stop(andReset reset: Bool = false) {
+		state = .Stopped
+		for animtable in animatables {
+			animtable.stopAnimation(andReset: reset)
+		}
+	}
+
+	func pause() {
+		state = .Paused
+		for animtable in animatables {
+			animtable.pauseAnimation()
+		}
+	}
+	
+	func resume() {
+		state = .Running
+		for animtable in animatables {
+			animtable.resumeAnimation()
+		}
+	}
+
+}
+
+/**
+Simply protocol to make animating a number of layers simpler
+
+Could combine parameters into a single struct ...
+*/
+public protocol Animatable {
+	func startAnimation(withDurationOf duration:Double, withDelegate: AnyObject?)
+	func stopAnimation(andReset rest: Bool)
+	func pauseAnimation()
+	func resumeAnimation()
 }

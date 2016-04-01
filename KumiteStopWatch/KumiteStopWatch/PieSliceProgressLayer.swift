@@ -17,7 +17,7 @@ import KZCoreUILibrary
 	a means by which I can change the endAngle of the masked layer and have it
 	animate by using a property or other "progress" method
 */
-public class PieSliceProgressLayer: CALayer, ProgressAnimatable {
+public class PieSliceProgressLayer: CALayer, Animatable {
 	
 	let maskedProgressLayer: PieSliceLayer = PieSliceLayer()
 	let progressLayer: PieSliceLayer = PieSliceLayer()
@@ -90,14 +90,14 @@ public class PieSliceProgressLayer: CALayer, ProgressAnimatable {
 		}
 	}
 
-	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
+	public func startAnimation(withDurationOf duration:Double, withDelegate: AnyObject?) {
 		maskedProgressLayer.removeAnimationForKey("endAngle")
 		progressLayer.removeAnimationForKey("endAngle")
 		
 		let anim = CABasicAnimation(keyPath: "endAngle")
-		anim.delegate = delegate
+		anim.delegate = withDelegate
 		
-		let range = 360.0 * progress
+		let range = 360.0
 		let angle = range.toCGFloat - 90.0.toCGFloat// + progressLayer.startAngle.toDegrees
 
 		maskedProgressLayer.endAngle = angle
@@ -106,11 +106,17 @@ public class PieSliceProgressLayer: CALayer, ProgressAnimatable {
 		anim.fromValue = -90.0.toRadians
 		anim.toValue = angle.toRadians
 		anim.duration = duration
-//		anim.removedOnCompletion = false
-//		anim.additive = true
-//		anim.fillMode = kCAFillModeForwards
 		maskedProgressLayer.addAnimation(anim, forKey: "endAngle")
 		progressLayer.addAnimation(anim, forKey: "endAngle")
+	}
+
+	public func stopAnimation(andReset reset: Bool = false) {
+		maskedProgressLayer.removeAnimationForKey("endAngle")
+		progressLayer.removeAnimationForKey("endAngle")
+		if reset {
+			maskedProgressLayer.endAngle = -90.0.toRadians.toCGFloat
+			progressLayer.endAngle = -90.0.toRadians.toCGFloat
+		}
 	}
 	
 }

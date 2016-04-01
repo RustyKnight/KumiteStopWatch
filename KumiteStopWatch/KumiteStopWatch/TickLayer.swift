@@ -13,7 +13,7 @@ import KZCoreUILibrary
 	The intention of the TickLayer is to provide a simple shape which can point to some
 	point on a circle
 */
-public class TickLayer: CALayer, ProgressAnimatable, Colorful {
+public class TickLayer: CALayer, Animatable, Colorful {
 	
 	public var colorBand: ColorBand? {
 		didSet {
@@ -117,15 +117,15 @@ public class TickLayer: CALayer, ProgressAnimatable, Colorful {
 			strokeColor = UIColor.lightGrayColor()
 		}
 	}
-	
-	public override func animationForKey(key: String) -> CAAnimation? {
-		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
-		anim.fromValue = presentationLayer()?.valueForKey(key)
-		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		anim.duration = 0.5
-		
-		return anim
-	}
+//	
+//	public override func animationForKey(key: String) -> CAAnimation? {
+//		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
+//		anim.fromValue = presentationLayer()?.valueForKey(key)
+//		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+//		anim.duration = 0.5
+//		
+//		return anim
+//	}
 	
 	/*
 	Override actionForKey: and return a CAAnimation that prepares the animation for that property.
@@ -221,7 +221,7 @@ public class TickLayer: CALayer, ProgressAnimatable, Colorful {
 		
 	}
 	
-	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
+	public func startAnimation(withDurationOf duration:Double, withDelegate: AnyObject?) {
 		removeAnimationForKey("progress")
 		removeAnimationForKey("fillEffect")
 		
@@ -242,12 +242,20 @@ public class TickLayer: CALayer, ProgressAnimatable, Colorful {
 		}
 		
 		let anim = CABasicAnimation(keyPath: "progress")
-		anim.delegate = delegate
+		anim.delegate = withDelegate
 		
 		anim.fromValue = 0
 		anim.toValue = 1.0
 		anim.duration = duration
 		addAnimation(anim, forKey: "progress")
+	}
+	
+	public func stopAnimation(andReset reset: Bool = false) {
+		removeAnimationForKey("progress")
+		removeAnimationForKey("fillEffect")
+		if (reset) {
+			progress = 0.0
+		}
 	}
 	
 }

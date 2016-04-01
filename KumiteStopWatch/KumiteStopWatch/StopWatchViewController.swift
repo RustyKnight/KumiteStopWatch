@@ -13,10 +13,12 @@ class StopWatchViewController: UIViewController {
 	@IBOutlet weak var stopWatchView: StopWatchView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var startPauseButton: UIButton!
+	@IBOutlet weak var resetButton: UIButton!
 	
-	let startImage: UIImage = StopwatchControls.imageOfStartControl()
-	let resumeImage: UIImage = StopwatchControls.imageOfPausedControl()
-	let stopImage: UIImage = StopwatchControls.imageOfRunningControl()
+	let startImage: UIImage = StopwatchControls.imageOfStartControl
+	let resumeImage: UIImage = StopwatchControls.imageOfPausedControl
+	let stopImage: UIImage = StopwatchControls.imageOfRunningControl
+	let resetImage: UIImage = StopwatchControls.imageOfRestControl
 	
 	var timeLine: TimeLine? {
 		didSet {
@@ -31,6 +33,9 @@ class StopWatchViewController: UIViewController {
 		
 		startPauseButton.setTitle(nil, forState: .Normal)
 		startPauseButton.setImage(startImage, forState: UIControlState.Normal)
+		
+		resetButton.setTitle(nil, forState: .Normal)
+		resetButton.setImage(resetImage, forState: UIControlState.Normal)
 		
 		timeLine = TimeLineBuilder(
 			withName: "Kumite",
@@ -56,13 +61,24 @@ class StopWatchViewController: UIViewController {
 	}
 	
 	@IBAction func startPauseButtonTapped(sender: UIButton) {
-		stopWatchView.pauseResume()
+		switch (stopWatchView.currentAnimationState()) {
+		case .Stopped:
+			stopWatchView.start()
+		case .Running:
+			stopWatchView.pause()
+		case .Paused:
+			stopWatchView.resume()
+		}
 	}
+	
+	@IBAction func resetButtonTapped(sender: UIButton) {
+		stopWatchView.reset()
+	}
+	
 }
 
 extension StopWatchViewController: StopWatchDelegate {
 	func stopWatch(stopWatchView: StopWatchView, stateDidChange state: AnimationState) {
-		print(state)
 		switch (state) {
 		case .Stopped:
 			startPauseButton.setImage(startImage, forState: UIControlState.Normal)

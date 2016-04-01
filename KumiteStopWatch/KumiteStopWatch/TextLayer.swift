@@ -10,9 +10,8 @@ import UIKit
 import KZCoreLibrary
 import KZCoreUILibrary
 
-public class TextLayer: CALayer, ProgressAnimatable, Colorful {
+public class TextLayer: ProgressLayer, Animatable, Colorful {
 	
-	public var progress: CGFloat = 0
 	public var colorBand: ColorBand? {
 		didSet {
 			setNeedsDisplay()
@@ -33,50 +32,12 @@ public class TextLayer: CALayer, ProgressAnimatable, Colorful {
 	public override init(layer: AnyObject) {
 		super.init(layer: layer)
 		if let layer = layer as? TextLayer {
-			progress = layer.progress
 			animationDuration = layer.animationDuration
 			colorBand = layer.colorBand
 			needsDisplayOnBoundsChange = true
 		}
 	}
 	
-	public override func animationForKey(key: String) -> CAAnimation? {
-		let anim: CABasicAnimation = CABasicAnimation(keyPath: key)
-		anim.fromValue = presentationLayer()?.valueForKey(key)
-		anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		anim.duration = 0.5
-		
-		return anim
-	}
-	
-	/*
-	Override actionForKey: and return a CAAnimation that prepares the animation for that property.
-	In our case, we will return an animation for the startAngle and endAngle properties.
-	*/
-	public override func actionForKey(event: String) -> CAAction? {
-		var action: CAAction?
-		if event == "progress" || event == "animationDuration" {
-			action = self.animationForKey(event)
-		} else {
-			action = super.actionForKey(event)
-		}
-		return action
-	}
-	
-	/*
-	Finally we also need to override needsDisplayForKey: to tell Core Animation that changes to our
-	startAngle and endAngle properties will require a redraw.
-	*/
-	public override class func needsDisplayForKey(key: String) -> Bool {
-		var needsDisplay = false
-		if key == "progress" || key == "animationDuration" {
-			needsDisplay = true
-		} else {
-			needsDisplay = super.needsDisplayForKey(key)
-		}
-		return needsDisplay
-	}
-
 	func formatDurationAt(progress: Double) -> String {
 		
 		let time = animationDuration * progress
@@ -136,11 +97,11 @@ public class TextLayer: CALayer, ProgressAnimatable, Colorful {
 		CGContextRestoreGState(ctx)
 	}
 	
-	public func animateProgressTo(progress: Double, withDurationOf duration:Double, delegate: AnyObject?) {
+	public func startAnimation(withDurationOf duration:Double, withDelegate: AnyObject?) {
 		removeAnimationForKey("progress")
 		
 		let anim = CABasicAnimation(keyPath: "progress")
-		anim.delegate = delegate
+		anim.delegate = withDelegate
 		anim.fromValue = 0
 		anim.toValue = 1.0
 		anim.duration = duration
@@ -148,6 +109,13 @@ public class TextLayer: CALayer, ProgressAnimatable, Colorful {
 		
 		self.progress = 1.0
 		self.animationDuration = duration
+	}
+	
+	public func stopAnimation(andReset reset: Bool) {
+		removeAnimationForKey("progress")
+		if reset {
+			self.progress = 0.0
+		}
 	}
 	
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KZCoreUILibrary
 
 /**
 	This is the "base" view ontop of which the cut out layer and the
@@ -15,7 +16,7 @@ import UIKit
 @IBDesignable
 public class CutoutProgressView: UIView {
 	
-	let progressLayer: ConicalFillPieSliceProgressLayer = ConicalFillPieSliceProgressLayer()
+	let progressLayer: PieSliceProgressLayer = PieSliceProgressLayer()
 	let cutoutLayer: OverlayCutoutLayer = OverlayCutoutLayer()
 	
 	@IBInspectable public override var backgroundColor: UIColor? {
@@ -140,10 +141,23 @@ public class CutoutProgressView: UIView {
 		
 		// Cutout based properties
 		cutoutThickness = 25.0
-		strokeColor = UIColor.yellowColor()
-		shadowColor = UIColor.darkGrayColor()
-		shadowOpacity = 0.5
-		
+
+		let timeLine = TimeLineBuilder(
+		withName: "Kumite",
+				withDurationOf: 2.0 * 60.0)
+//				startWithColor: UIColor.greenColor(),
+//				endWithColor: UIColor.redColor())
+			.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
+			.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.None)
+			.endWith(color: UIColor.redColor(), alerts: TimeLineAlert.None)
+			.build()
+
+		let delegate = ConicalFillPieSliceDelegate()
+		delegate.colorBand = timeLine.colorBand
+
+		progressLayer.pieSliceProgressLayerDelegate = delegate
+		progressLayer.strokeColor = nil
+		progressLayer.lineWidth = 0
 		progressLayer.frame = bounds
 		cutoutLayer.frame = bounds
 		layer.addSublayer(progressLayer)
@@ -161,7 +175,7 @@ public class CutoutProgressView: UIView {
 
 		switch (animationManager.currentState()) {
 		case .Stopped:
-			animationManager.start(withDurationOf: 2.0 * 6.0, withDelegate: self)
+			animationManager.start(withDurationOf: 10, withDelegate: self)
 		case .Running:
 			animationManager.pause()
 		case .Paused:
@@ -175,6 +189,32 @@ public class CutoutProgressView: UIView {
 	
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
 		print("Stopped; state = \(animationManager.currentState())")
+		animationManager.stop()
 	}
 
+}
+
+public class ConicalFillPieSliceDelegate: PieSliceProgressLayerDelegate {
+
+	public var colorBand: ColorBand?
+	private var buffer: UIImage?
+
+	public func contentsFor(layer: PieSliceProgressLayer) -> CGImage? {
+		if buffer == nil {
+			if let colorBand = colorBand {
+				//			let diameter = bounds.minDimension()
+				let size = layer.bounds.size
+				let master = KZGraphicsUtilities.createConicalGraidentOf(
+						size: size,
+						withColorBand: colorBand)
+
+				buffer = master
+			}
+		}
+		var image: CGImage?
+		if let buffer = buffer {
+			image = buffer.CGImage
+		}
+		return image
+	}
 }

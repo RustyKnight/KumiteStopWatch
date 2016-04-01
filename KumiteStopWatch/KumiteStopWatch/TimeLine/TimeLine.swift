@@ -57,12 +57,19 @@ public class TimeLineBuilder {
 	private var duration: NSTimeInterval
 	private var name: String
 	
-	public init(withName name: String, withDurationOf: NSTimeInterval, startWithColor: UIColor, endWithColor: UIColor) {
+	public init(withName name: String, withDurationOf: NSTimeInterval) {
 		self.duration = withDurationOf
 		self.name = name
-		
-		add(location: 0.0, color: startWithColor, alerts: .None)
-		add(location: 1.0, color: endWithColor, alerts: .None)
+	}
+	
+	public func startWith(color color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
+		add(timeLineEvent: TimeLineEvent(location: 0.0, color: color, alerts: alerts))
+		return self
+	}
+	
+	public func endWith(color color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
+		add(timeLineEvent: TimeLineEvent(location: 1.0, color: color, alerts: alerts))
+		return self
 	}
 	
 	public func add(location location: Double, color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {

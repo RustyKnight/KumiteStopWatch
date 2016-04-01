@@ -237,6 +237,7 @@ import KZCoreUILibrary
 		for var colorful in colorfuls {
 			colorful.colorBand = colorband
 		}
+		overlayLayer.timeLine = timeLine
 		//			textLayer.timeLine = timeLine
 		//			tickLayer.timeLime = timeLine
 		//			conicalFillPieSliceProgressLayer.timeLine = timeLine
@@ -368,6 +369,8 @@ class OverlayLayer: CAShapeLayer {
 			setNeedsDisplay()
 		}
 	}
+
+	var timeLine: TimeLine?
 	
 	override init() {
 		super.init()
@@ -398,15 +401,77 @@ class OverlayLayer: CAShapeLayer {
 		path = UIBezierPath(ovalInRect: CGRect(x: centerX, y: centerY, width: scaledSize, height: scaledSize)).CGPath
 	}
 	
+	override func actionForKey(event: String) -> CAAction? {
+		var action: CAAction?
+		if event == "fillColor" {
+			action = self.animationForKey(event)
+		} else {
+			action = super.actionForKey(event)
+		}
+		return action
+	}
+	
+	override class func needsDisplayForKey(key: String) -> Bool {
+		var needsDisplay = false
+		if key == "fillColor" {
+			needsDisplay = true
+		} else {
+			needsDisplay = super.needsDisplayForKey(key)
+		}
+		return needsDisplay
+	}
+	
 	func startAnimation() {
 		
 		removeAnimationForKey("shadowOpacity")
-		
+
+		if let timeLine = timeLine {
+			
+			let delay = 1.0 / timeLine.duration
+			let milliBefore = 0.001 / timeLine.duration
+			let events = Array(timeLine.events[1..<timeLine.events.count])
+			if events.count > 0 {
+				
+				let keyAnim = CAKeyframeAnimation(keyPath: "fillColor")
+				keyAnim.duration = timeLine.duration
+				
+				var colors: [CGColor] = [UIColor.blackColor().CGColor]
+				var locations: [Double] = [0.0]
+				for evt in events {
+					if evt.alerts.contains(TimeLineAlert.FlashBackground) {
+						
+						let location = evt.location
+						colors.append(UIColor.blackColor().CGColor)
+						locations.append((location - (delay * 2)) - milliBefore)
+						
+						for i in 2.stride(to: -1, by: -1) {
+
+							let time = location - (delay * Double(i))
+							colors.append(timeLine.colorBand.colorAt(time).darken(by: 0.5).CGColor)
+							locations.append(time)
+							
+							let endTime = time + delay - milliBefore
+							colors.append(UIColor.blackColor().CGColor)
+							locations.append(endTime)
+						}
+						
+
+					}
+				}
+
+				keyAnim.values = colors
+				keyAnim.keyTimes = locations
+				addAnimation(keyAnim, forKey: "fillColor")
+			}
+			
+		}
+
 		let currentValue = shadowOpacity
 
 		let anim = CAKeyframeAnimation(keyPath: "shadowOpacity")
-		anim.values = [currentValue, 0.75, 0.25, currentValue]
-		anim.keyTimes = [0.0, 0.33, 0.66, 1.0]
+		anim.values = [currentValue, 0.75, 0.25]
+		anim.keyTimes = [0.0, 0.5, 1.0]
+		anim.autoreverses = true
 		anim.duration = 4.0
 		anim.repeatCount = MAXFLOAT
 		//		anim.removedOnCompletion = false
@@ -418,6 +483,7 @@ class OverlayLayer: CAShapeLayer {
 	
 	func stopAnimation() {
 
+		removeAnimationForKey("fillColor")
 		removeAnimationForKey("shadowOpacity")
 		
 	}

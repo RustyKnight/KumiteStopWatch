@@ -39,10 +39,11 @@ class StopWatchViewController: UIViewController {
 		
 		timeLine = TimeLineBuilder(
 			withName: "Kumite",
-			withDurationOf: 2.0 * 60.0,
-			startWithColor: UIColor.greenColor(),
-			endWithColor: UIColor.redColor())
-			.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.None)
+//			withDurationOf: 2.0 * 60.0,
+			withDurationOf: 20.0)
+			.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
+			.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground)
+			.endWith(color:UIColor.redColor(), alerts: TimeLineAlert.FlashBackground)
 			.build()
 	}
 	

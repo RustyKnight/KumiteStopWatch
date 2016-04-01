@@ -31,11 +31,6 @@ public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer, Colorful {
 		configure()
 	}
 
-	override func	configure() {
-		super.configure()
-		pieSliceProgressLayerDelegate = self
-	}
-	
 	func invalidateBuffer() {
 		buffer = nil
 	}
@@ -43,6 +38,12 @@ public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer, Colorful {
 }
 
 extension ConicalFillPieSliceProgressLayer: PieSliceProgressLayerDelegate {
+
+	override func	configure() {
+		super.configure()
+		pieSliceProgressLayerDelegate = self
+	}
+
 	public func contentsFor(layer: PieSliceProgressLayer) -> CGImage? {
 		if buffer == nil {
 			if let colorBand = colorBand {

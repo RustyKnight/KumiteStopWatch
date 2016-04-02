@@ -37,14 +37,17 @@ class StopWatchViewController: UIViewController {
 		resetButton.setTitle(nil, forState: .Normal)
 		resetButton.setImage(resetImage, forState: UIControlState.Normal)
 		
-		timeLine = TimeLineBuilder(
+		// This was changed, but I caused a massive issue, broke XCode and had
+		// to build it line by line to figure it out :P
+		let builder = TimeLineBuilder(
 			withName: "Kumite",
-//			withDurationOf: 2.0 * 60.0,
 			withDurationOf: 20.0)
-			.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
-			.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground)
-			.endWith(color:UIColor.redColor(), alerts: TimeLineAlert.FlashBackground)
-			.build()
+		
+		builder.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
+		builder.endWith(color:UIColor.redColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
+		builder.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
+		
+		timeLine = builder.build()
 	}
 	
 	override func didReceiveMemoryWarning() {

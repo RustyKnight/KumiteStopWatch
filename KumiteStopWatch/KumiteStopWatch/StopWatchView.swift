@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 import KZCoreUILibrary
 
 @IBDesignable public class StopWatchView: UIView {
@@ -160,6 +161,12 @@ import KZCoreUILibrary
 		}
 	}
 	
+	// This is used to maintain a tempory list of 
+	// events while animation is running, this way
+	// I can popup off events as they occur and not
+	// waste time iterating over the list
+	private var eventList: [TimeLineEvent]?
+	
 	private let animationManager: AnimationManager = AnimationManager()
 
 	private let textLayer: TextLayer = TextLayer()
@@ -214,10 +221,14 @@ import KZCoreUILibrary
 		layer.addSublayer(tickLayer)
 		layer.addSublayer(textLayer)
 		
+		flashLayer.animationDelegate = self
+		
 		updateTimeLine()
 	}
 	
 	func updateTimeLine() {
+		stop(andReset: true)
+		eventList = nil
 		for tickLayer in timeLineTickLayers {
 			tickLayer.removeFromSuperlayer()
 		}
@@ -301,10 +312,23 @@ public extension StopWatchView {
 	}
 	
 	public override func animationDidStart(anim: CAAnimation) {
+		prepareEvents()
 		stopWatchStateDidChange()
 	}
 	
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+		if let eventList = eventList {
+			if let event = eventList.first {
+				// Is there one last event?
+				if event.location == 1.0 {
+					// Flashing is taken care of by the FlashLayer
+					if event.alerts.contains(TimeLineAlert.Vibrate) {
+						AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+					}
+				}
+			}
+		}
+		eventList = nil
 		stop()
 	}
 	
@@ -314,6 +338,67 @@ public extension StopWatchView {
 		}
 	}
 	
+	func prepareEvents() {
+		if eventList == nil {
+			if let timeLine = timeLine {
+				eventList = []
+				let oneSecond = 1.0 / timeLine.duration
+				let colorBand = timeLine.colorBand
+				for evt in timeLine.events {
+					if evt.alerts.contains(TimeLineAlert.Vibrate) {
+						// We want three events, 1 second apart up
+						for i in 2.stride(to: -1, by: -1) {
+							let time = evt.location - (oneSecond * Double(i))
+							// Must be postive
+							if (time == abs(time)) {
+								eventList!.append(TimeLineEvent(location: time, color: colorBand.colorAt(time), alerts: [TimeLineAlert.Vibrate]))
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+extension StopWatchView: AnimationProgressDelegate {
+	func animationProgressedTo(progress: Double) {
+		if let eventList = eventList {
+			if let next = eventList.first {
+				if progress >= next.location {
+					if next.alerts.contains(TimeLineAlert.Vibrate) {
+						AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+					}
+				}
+//				if let timeLine = timeLine {
+//					let oneSecond = 1.0 / timeLine.duration
+//					let gap = 0.005 / timeLine.duration
+//					
+//					if next.alerts.contains(TimeLineAlert.Vibrate) {
+//						for i in 2.stride(to: -1, by: -1) {
+//							let time = next.location - (oneSecond * Double(i))
+//							if time - gap...time + gap ~= progress {
+//								print("Within range")
+//							}
+////							print("Vibrate @ \(time) for \(progress - gap)-\(progress + gap)")
+////							if progress - gap >= time && progress + gap <= time {
+////								print("Vibrate for \(next.location)")
+////							}
+//						}
+//					}
+//					
+//					if progress >= next.location - (oneSecond * 2.0) {
+////						print("Trigger \(next.location) @ \(progress)")
+//					}
+				
+					if progress >= next.location {
+						self.eventList!.removeAtIndex(0)
+					}
+				}
+			}
+//		}
+	}
 }
 
 class OverlayLayer: CAShapeLayer {
@@ -384,6 +469,10 @@ class OverlayLayer: CAShapeLayer {
 	
 }
 
+protocol AnimationProgressDelegate {
+	func animationProgressedTo(progress: Double);
+}
+
 // The intention for this is to provide the time line background flashing
 // effect
 // The reason for doing this here is because the OverlayLayer animates its
@@ -393,6 +482,7 @@ class FlashLayer: OverlayLayer, Animatable {
 	
 	var timeLine: TimeLine?
 	var progress: Double = 0.0
+	var animationDelegate: AnimationProgressDelegate?
 	
 	override init() {
 		super.init()
@@ -403,6 +493,7 @@ class FlashLayer: OverlayLayer, Animatable {
 		if let layer = layer as? FlashLayer {
 			timeLine = layer.timeLine
 			progress = layer.progress
+			animationDelegate = layer.animationDelegate
 		}
 	}
 	
@@ -430,6 +521,22 @@ class FlashLayer: OverlayLayer, Animatable {
 			action = super.actionForKey(event)
 		}
 		return action
+	}
+	
+	override class func needsDisplayForKey(key: String) -> Bool {
+		var needsDisplay = false
+		if key == "progress" {
+			needsDisplay = true
+		} else {
+			needsDisplay = super.needsDisplayForKey(key)
+		}
+		return needsDisplay
+	}
+	
+	override func drawInContext(ctx: CGContext) {
+		if let delegate = animationDelegate {
+			delegate.animationProgressedTo(progress)
+		}
 	}
 	
 	func startAnimation(withDurationOf duration: Double, withDelegate: AnyObject?) {
@@ -477,7 +584,7 @@ class FlashLayer: OverlayLayer, Animatable {
 			}
 			
 			let anim = CABasicAnimation(keyPath: "progress")
-			anim.delegate = withDelegate
+//			anim.delegate = withDelegate
 			anim.fromValue = 0
 			anim.toValue = 1.0
 			anim.duration = duration

@@ -13,6 +13,7 @@ import KZCoreUILibrary
 	
 	private let conicalFillPieSliceProgressLayer: ConicalFillPieSliceProgressLayer = ConicalFillPieSliceProgressLayer()
 	private let overlayLayer: OverlayLayer = OverlayLayer()
+	private let flashLayer: FlashLayer = FlashLayer()
 	
 	public var stopWatchDelegate: StopWatchDelegate?
 	
@@ -109,6 +110,7 @@ import KZCoreUILibrary
 	@IBInspectable public var overlayFillScale: Float {
 		set(newValue) {
 			overlayLayer.fillScale = newValue
+			flashLayer.fillScale = newValue
 			tickLayer.radiusScale = newValue
 			for tickLayer in timeLineTickLayers {
 					tickLayer.radiusScale = newValue
@@ -184,6 +186,7 @@ import KZCoreUILibrary
 		animationManager.animatables.append(conicalFillPieSliceProgressLayer)
 		animationManager.animatables.append(tickLayer)
 		animationManager.animatables.append(textLayer)
+		animationManager.animatables.append(flashLayer)
 		
 		colorfuls.append(textLayer)
 		colorfuls.append(tickLayer)
@@ -202,15 +205,16 @@ import KZCoreUILibrary
 		
 		conicalFillPieSliceProgressLayer.frame = bounds
 		overlayLayer.frame = bounds
+		flashLayer.frame = bounds
+		textLayer.frame = bounds
+
 		layer.addSublayer(conicalFillPieSliceProgressLayer)
 		layer.addSublayer(overlayLayer)
-
+		layer.addSublayer(flashLayer)
 		layer.addSublayer(tickLayer)
+		layer.addSublayer(textLayer)
 		
 		updateTimeLine()
-		
-		textLayer.frame = bounds
-		layer.addSublayer(textLayer)
 	}
 	
 	func updateTimeLine() {
@@ -237,10 +241,9 @@ import KZCoreUILibrary
 		for var colorful in colorfuls {
 			colorful.colorBand = colorband
 		}
-		overlayLayer.timeLine = timeLine
-		//			textLayer.timeLine = timeLine
-		//			tickLayer.timeLime = timeLine
-		//			conicalFillPieSliceProgressLayer.timeLine = timeLine
+		
+		flashLayer.timeLine = timeLine
+		
 		setNeedsLayout()
 		setNeedsDisplay()
 	}
@@ -252,67 +255,20 @@ import KZCoreUILibrary
 		overlayLayer.frame = bounds
 		tickLayer.frame = bounds
 		textLayer.frame = bounds
+		flashLayer.frame = bounds
 		
 		for tick in timeLineTickLayers {
 			tick.frame = bounds
 		}
 	}
 	
+}
+
+public extension StopWatchView {
+
 	public func currentAnimationState() -> AnimationState {
 		return animationManager.currentState()
 	}
-	
-//	public func pauseResume() {
-//		switch (animationStateMonitor.currentState()) {
-//		case .Stopped:
-//			start()
-//		case .Running:
-//			conicalFillPieSliceProgressLayer.pauseAnimation()
-//			tickLayer.pauseAnimation()
-//			textLayer.pauseAnimation()
-//			animationStateMonitor.paused()
-//			stopWatchStateDidChange()
-//		case .Paused:
-//			conicalFillPieSliceProgressLayer.resumeAnimation()
-//			tickLayer.resumeAnimation()
-//			textLayer.resumeAnimation()
-//			animationStateMonitor.running()
-//			stopWatchStateDidChange()
-//		}
-//	}
-//	
-//	func start() {
-//		if let timeLine = timeLine {
-//			let duration = timeLine.duration
-//			for animtable in animtables {
-//				animtable.animateProgressTo(1.0, withDurationOf: duration, delegate: self)
-//			}
-//		}
-//	}
-	
-	// This is test code for testing the basic animation, it doesn't really
-	// belong here, but should probably be part of the contract with the view controller
-	// This would also relies on the concept of the timeline, which will be implemented
-	// later
-//	override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//		super.touchesBegan(touches, withEvent: event)
-//		
-//		print("state = \(animationStateMonitor.currentState())")
-//		switch (animationStateMonitor.currentState()) {
-//		case .Stopped:
-//			start()
-//		case .Running:
-//			conicalFillPieSliceProgressLayer.pauseAnimation()
-//			tickLayer.pauseAnimation()
-//			textLayer.pauseAnimation()
-//			animationStateMonitor.paused()
-//		case .Paused:
-//			conicalFillPieSliceProgressLayer.resumeAnimation()
-//			tickLayer.resumeAnimation()
-//			textLayer.resumeAnimation()
-//			animationStateMonitor.running()
-//		}
-//	}
 	
 	public func start() {
 		if let timeLine = timeLine {
@@ -357,7 +313,6 @@ import KZCoreUILibrary
 			stopWatchDelegate.stopWatch(self, stateDidChange: animationManager.currentState())
 		}
 	}
-
 	
 }
 
@@ -369,8 +324,6 @@ class OverlayLayer: CAShapeLayer {
 			setNeedsDisplay()
 		}
 	}
-
-	var timeLine: TimeLine?
 	
 	override init() {
 		super.init()
@@ -386,7 +339,6 @@ class OverlayLayer: CAShapeLayer {
 		super.init(layer: layer)
 		if let layer = layer as? OverlayLayer {
 			fillScale = layer.fillScale
-			timeLine = layer.timeLine
 		}
 	}
 	
@@ -412,49 +364,6 @@ class OverlayLayer: CAShapeLayer {
 	func startAnimation() {
 		
 		removeAnimationForKey("shadowOpacity")
-		removeAnimationForKey("fillColor")
-		removeAnimationForKey("progress")
-
-		if let timeLine = timeLine {
-			
-			let delay = 1.0 / timeLine.duration
-			let milliBefore = 0.001 / timeLine.duration
-			let events = Array(timeLine.events[1..<timeLine.events.count])
-			if events.count > 0 {
-				
-				let keyAnim = CAKeyframeAnimation(keyPath: "fillColor")
-				keyAnim.duration = timeLine.duration
-				
-				var colors: [CGColor] = [UIColor.blackColor().CGColor]
-				var locations: [Double] = [0.0]
-				for evt in events {
-					if evt.alerts.contains(TimeLineAlert.FlashBackground) {
-						
-						let location = evt.location
-						colors.append(UIColor.blackColor().CGColor)
-						locations.append((location - (delay * 2)) - milliBefore)
-						
-						for i in 2.stride(to: -1, by: -1) {
-
-							let time = location - (delay * Double(i))
-							colors.append(timeLine.colorBand.colorAt(time).darken(by: 0.5).CGColor)
-							locations.append(time)
-							
-							let endTime = time + delay - milliBefore
-							colors.append(UIColor.blackColor().CGColor)
-							locations.append(endTime)
-						}
-						
-
-					}
-				}
-
-				keyAnim.values = colors
-				keyAnim.keyTimes = locations
-				addAnimation(keyAnim, forKey: "fillColor")
-			}
-			
-		}
 
 		let currentValue = shadowOpacity
 
@@ -470,9 +379,141 @@ class OverlayLayer: CAShapeLayer {
 	func stopAnimation(andReset reset: Bool) {
 
 		removeAnimationForKey("shadowOpacity")
+		
+	}
+	
+}
+
+// The intention for this is to provide the time line background flashing
+// effect
+// The reason for doing this here is because the OverlayLayer animates its
+// opacity continuiously, while the stop watch is "running" (including when
+// paused), which doesn't help the background flashing side of things
+class FlashLayer: OverlayLayer, Animatable {
+	
+	var timeLine: TimeLine?
+	var progress: Double = 0.0
+	
+	override init() {
+		super.init()
+	}
+	
+	override init(layer: AnyObject) {
+		super.init(layer: layer)
+		if let layer = layer as? FlashLayer {
+			timeLine = layer.timeLine
+			progress = layer.progress
+		}
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+	
+	override func configure() {
+		super.configure()
+		fillColor = UIColor.clearColor().CGColor
+		strokeColor = nil
+		shadowColor = nil
+		shadowOpacity = 0.0
+	}
+	
+	/*
+	Override actionForKey: and return a CAAnimation that prepares the animation for that property.
+	In our case, we will return an animation for the progress property.
+	*/
+	override func actionForKey(event: String) -> CAAction? {
+		var action: CAAction?
+		if event == "progress" {
+			action = self.animationForKey(event)
+		} else {
+			action = super.actionForKey(event)
+		}
+		return action
+	}
+	
+	func startAnimation(withDurationOf duration: Double, withDelegate: AnyObject?) {
+		
+		removeAnimationForKey("fillColor")
+		
+		if let timeLine = timeLine {
+			
+			let delay = 1.0 / timeLine.duration
+			let milliBefore = 0.001 / timeLine.duration
+			let events = Array(timeLine.events[1..<timeLine.events.count])
+			if events.count > 0 {
+				
+				let keyAnim = CAKeyframeAnimation(keyPath: "fillColor")
+				keyAnim.duration = timeLine.duration
+				
+				var colors: [CGColor] = [UIColor.clearColor().CGColor]
+				var locations: [Double] = [0.0]
+				for evt in events {
+					if evt.alerts.contains(TimeLineAlert.FlashBackground) {
+						
+						let location = evt.location
+						colors.append(UIColor.clearColor().CGColor)
+						locations.append((location - (delay * 2)) - milliBefore)
+						
+						for i in 2.stride(to: -1, by: -1) {
+							
+							let time = location - (delay * Double(i))
+							colors.append(timeLine.colorBand.colorAt(time).darken(by: 0.5).CGColor)
+							locations.append(time)
+							
+							let endTime = time + delay - milliBefore
+							colors.append(UIColor.clearColor().CGColor)
+							locations.append(endTime)
+						}
+						
+						
+					}
+				}
+				
+				keyAnim.values = colors
+				keyAnim.keyTimes = locations
+				keyAnim.delegate = self
+				addAnimation(keyAnim, forKey: "fillColor")
+			}
+			
+			let anim = CABasicAnimation(keyPath: "progress")
+			anim.delegate = withDelegate
+			anim.fromValue = 0
+			anim.toValue = 1.0
+			anim.duration = duration
+			addAnimation(anim, forKey: "progress")
+			
+		}
+	}
+	
+	override func stopAnimation(andReset reset: Bool) {
 		removeAnimationForKey("fillColor")
 		removeAnimationForKey("progress")
-		
+		if (reset) {
+			progress = 0.0
+		}
+	}
+	
+	override func animationDidStart(anim: CAAnimation) {
+		print("Flash AnimationDidStart")
+	}
+	
+	override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+		print("Flash AnimationDidStop with \(flag)")
+		if flag {
+			if let timeLine = timeLine {
+				if let evt = timeLine.events.last {
+					if evt.alerts.contains(TimeLineAlert.FlashBackground) {
+						let color = timeLine.colorBand.colorAt(1.0)
+						let anim = CABasicAnimation(keyPath: "fillColor")
+						anim.fromValue = color.CGColor
+						anim.toValue = UIColor.clearColor().CGColor
+						anim.duration = 1.0
+						addAnimation(anim, forKey: "lastFillColor")
+					}
+				}
+			}
+		}
 	}
 	
 }

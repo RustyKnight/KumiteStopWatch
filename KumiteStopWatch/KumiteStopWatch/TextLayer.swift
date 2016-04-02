@@ -125,6 +125,7 @@ public class TextLayer: ProgressLayer, Animatable, Colorful {
 		removeAnimationForKey("progress")
 		if reset {
 			self.progress = 0.0
+			setNeedsDisplay()
 		}
 	}
 	

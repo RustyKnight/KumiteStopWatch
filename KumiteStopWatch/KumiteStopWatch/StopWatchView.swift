@@ -282,6 +282,7 @@ public extension StopWatchView {
 	}
 	
 	public func start() {
+		UIApplication.sharedApplication().idleTimerDisabled = true
 		if let timeLine = timeLine {
 			animationManager.start(withDurationOf: timeLine.duration, withDelegate: self)
 		}
@@ -289,6 +290,7 @@ public extension StopWatchView {
 	}
 	
 	public func stop(andReset reset: Bool = false) {
+		UIApplication.sharedApplication().idleTimerDisabled = false
 		animationManager.stop(andReset: reset)
 		overlayLayer.stopAnimation(andReset: reset)
 		stopWatchStateDidChange()

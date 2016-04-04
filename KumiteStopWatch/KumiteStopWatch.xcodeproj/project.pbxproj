@@ -33,6 +33,7 @@
 		709131261CA66C5600A009E9 /* KZCoreUILibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; };
 		709131271CA66C5600A009E9 /* KZCoreUILibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7091312C1CA7D40100A009E9 /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091312B1CA7D40100A009E9 /* StopWatchView.swift */; };
+		70F24B551CB20D8000AA9F4E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F24B541CB20D8000AA9F4E /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,7 @@
 		7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreUILibrary.framework; path = Carthage/Build/iOS/KZCoreUILibrary.framework; sourceTree = "<group>"; };
 		709131221CA6574D00A009E9 /* ConicalFillPieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConicalFillPieSliceProgressLayer.swift; path = Layers/PieSlice/ConicalFillPieSliceProgressLayer.swift; sourceTree = "<group>"; };
 		7091312B1CA7D40100A009E9 /* StopWatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+		70F24B541CB20D8000AA9F4E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			children = (
 				7059836D1C9FE924006B697A /* AnimationManager.swift */,
 				70535FEA1CACF9FF00295CA2 /* StopWatchDelegate.swift */,
+				70F24B541CB20D8000AA9F4E /* Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				709131231CA6574D00A009E9 /* ConicalFillPieSliceProgressLayer.swift in Sources */,
+				70F24B551CB20D8000AA9F4E /* Extensions.swift in Sources */,
 				7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */,
 				705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */,
 				70535FE91CACED9600295CA2 /* StopwatchControls.swift in Sources */,

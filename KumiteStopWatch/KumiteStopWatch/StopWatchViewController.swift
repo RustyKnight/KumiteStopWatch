@@ -28,6 +28,8 @@ class StopWatchViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		setNeedsStatusBarAppearanceUpdate()
 
 		stopWatchView.stopWatchDelegate = self
 		
@@ -41,13 +43,17 @@ class StopWatchViewController: UIViewController {
 		// to build it line by line to figure it out :P
 		let builder = TimeLineBuilder(
 			withName: "Kumite",
-			withDurationOf: 20.0)
+			withDurationOf: 2.0 * 60.0)
 		
 		builder.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
 		builder.endWith(color:UIColor.redColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
 		builder.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
 		
 		timeLine = builder.build()
+	}
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return UIStatusBarStyle.LightContent
 	}
 	
 	override func didReceiveMemoryWarning() {

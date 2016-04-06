@@ -188,7 +188,7 @@ import KZCoreUILibrary
 	}
 
 	func configure() {
-		backgroundColor = UIColor.blackColor()
+//		backgroundColor = UIColor.blackColor()
 		
 		animationManager.animatables.append(conicalFillPieSliceProgressLayer)
 		animationManager.animatables.append(tickLayer)

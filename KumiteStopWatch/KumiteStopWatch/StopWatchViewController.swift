@@ -10,6 +10,8 @@ import UIKit
 
 class StopWatchViewController: UIViewController {
 	
+	@IBOutlet weak var akaImageView: UIImageView!
+	@IBOutlet weak var shiroImageView: UIImageView!
 	@IBOutlet weak var stopWatchView: StopWatchView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var startPauseButton: UIButton!
@@ -50,6 +52,9 @@ class StopWatchViewController: UIViewController {
 		builder.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
 		
 		timeLine = builder.build()
+		
+		akaImageView.image = StopwatchControls.imageOfAka()
+		shiroImageView.image = StopwatchControls.imageOfShiro()
 	}
 	
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {

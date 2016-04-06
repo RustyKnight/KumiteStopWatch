@@ -65,33 +65,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw2-lK-dpp" customClass="StopWatchView" customModule="KumiteStopWatch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="78" width="600" height="522"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzS-O4-2l4">
-                                        <rect key="frame" x="538" y="480" width="54" height="34"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="startPauseButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="RxH-Sn-wPc"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-bf-eMK">
-                                        <rect key="frame" x="8" y="480" width="54" height="34"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="resetButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="YxG-4A-pX6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EYG-al-dzn" userLabel="ShiroImageView">
+                                <rect key="frame" x="20" y="58" width="160" height="240"/>
                                 <constraints>
-                                    <constraint firstItem="VzS-O4-2l4" firstAttribute="trailing" secondItem="rw2-lK-dpp" secondAttribute="trailingMargin" id="2v5-vZ-pg0"/>
-                                    <constraint firstItem="yj9-bf-eMK" firstAttribute="bottom" secondItem="rw2-lK-dpp" secondAttribute="bottomMargin" id="BMs-Fc-KVl"/>
-                                    <constraint firstItem="yj9-bf-eMK" firstAttribute="leading" secondItem="rw2-lK-dpp" secondAttribute="leadingMargin" id="cKd-6H-yYj"/>
-                                    <constraint firstItem="VzS-O4-2l4" firstAttribute="bottom" secondItem="rw2-lK-dpp" secondAttribute="bottomMargin" id="e0b-50-y5q"/>
+                                    <constraint firstAttribute="height" constant="240" id="Xn3-Us-wUc"/>
+                                    <constraint firstAttribute="width" constant="160" id="cuv-W4-7gA"/>
                                 </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xe4-2x-oEL" userLabel="AkaImageView">
+                                <rect key="frame" x="420" y="58" width="160" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="1y6-Lb-gtO"/>
+                                    <constraint firstAttribute="height" constant="240" id="x3a-h1-Aus"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw2-lK-dpp" customClass="StopWatchView" customModule="KumiteStopWatch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="progressLineWidth">
                                         <real key="value" value="0.0"/>
@@ -123,26 +112,52 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Stopwatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2o-hB-A5h">
-                                <rect key="frame" x="20" y="20" width="560" height="58"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzS-O4-2l4">
+                                <rect key="frame" x="538" y="558" width="54" height="34"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="startPauseButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="RxH-Sn-wPc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-bf-eMK">
+                                <rect key="frame" x="8" y="558" width="54" height="34"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="resetButtonTapped:" destination="ptx-wR-fzb" eventType="touchUpInside" id="YxG-4A-pX6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8CZ-mT-C8k" firstAttribute="top" secondItem="rw2-lK-dpp" secondAttribute="bottom" id="CTS-nf-Pqf"/>
-                            <constraint firstItem="N2o-hB-A5h" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leadingMargin" id="U97-Fq-04I"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="N2o-hB-A5h" secondAttribute="trailing" id="V2l-5V-gU4"/>
-                            <constraint firstItem="rw2-lK-dpp" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" id="j1N-aa-9je"/>
-                            <constraint firstItem="N2o-hB-A5h" firstAttribute="top" secondItem="jh3-ne-mWp" secondAttribute="bottom" id="jgo-gY-L30"/>
-                            <constraint firstItem="rw2-lK-dpp" firstAttribute="top" secondItem="N2o-hB-A5h" secondAttribute="bottom" id="nyF-cO-qXL"/>
-                            <constraint firstAttribute="trailing" secondItem="rw2-lK-dpp" secondAttribute="trailing" id="o5K-0T-83B"/>
+                            <constraint firstItem="yj9-bf-eMK" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" constant="8" id="6xg-io-t2L"/>
+                            <constraint firstItem="rw2-lK-dpp" firstAttribute="top" secondItem="7Zh-M1-6oV" secondAttribute="top" id="EOy-qM-sOB"/>
+                            <constraint firstItem="EYG-al-dzn" firstAttribute="top" secondItem="N2o-hB-A5h" secondAttribute="bottom" id="KSE-dY-UIN"/>
+                            <constraint firstItem="N2o-hB-A5h" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" id="Nb3-2o-ufd"/>
+                            <constraint firstItem="EYG-al-dzn" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leadingMargin" id="P9c-8W-COE"/>
+                            <constraint firstItem="N2o-hB-A5h" firstAttribute="top" secondItem="7Zh-M1-6oV" secondAttribute="top" id="UHT-6U-oy7"/>
+                            <constraint firstItem="8CZ-mT-C8k" firstAttribute="top" secondItem="rw2-lK-dpp" secondAttribute="bottom" id="XMd-HR-Iw8"/>
+                            <constraint firstAttribute="bottom" secondItem="yj9-bf-eMK" secondAttribute="bottom" constant="8" id="YIv-dm-bvu"/>
+                            <constraint firstItem="rw2-lK-dpp" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" id="bvS-of-1J9"/>
+                            <constraint firstAttribute="trailing" secondItem="VzS-O4-2l4" secondAttribute="trailing" constant="8" id="czE-ER-dAB"/>
+                            <constraint firstItem="xe4-2x-oEL" firstAttribute="top" secondItem="N2o-hB-A5h" secondAttribute="bottom" id="k7z-R4-sSf"/>
+                            <constraint firstAttribute="trailing" secondItem="N2o-hB-A5h" secondAttribute="trailing" id="pz3-Xh-dSe"/>
+                            <constraint firstAttribute="trailing" secondItem="rw2-lK-dpp" secondAttribute="trailing" id="tr1-ut-EZX"/>
+                            <constraint firstAttribute="bottom" secondItem="VzS-O4-2l4" secondAttribute="bottom" constant="8" id="uBe-JE-HCF"/>
+                            <constraint firstItem="xe4-2x-oEL" firstAttribute="trailing" secondItem="7Zh-M1-6oV" secondAttribute="trailingMargin" id="vYI-kM-ucD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="akaImageView" destination="xe4-2x-oEL" id="GUv-li-CBi"/>
                         <outlet property="resetButton" destination="yj9-bf-eMK" id="L59-U6-1WJ"/>
+                        <outlet property="shiroImageView" destination="EYG-al-dzn" id="2uR-7k-wS2"/>
                         <outlet property="startPauseButton" destination="VzS-O4-2l4" id="2Le-9Y-n7Y"/>
                         <outlet property="stopWatchView" destination="rw2-lK-dpp" id="4yB-CC-QUX"/>
                         <outlet property="titleLabel" destination="N2o-hB-A5h" id="Tip-cO-EG9"/>

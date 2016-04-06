@@ -24,6 +24,11 @@
 		705983451C9D04A2006B697A /* PieSliceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983441C9D04A2006B697A /* PieSliceLayer.swift */; };
 		705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */; };
 		7059836E1C9FE924006B697A /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059836D1C9FE924006B697A /* AnimationManager.swift */; };
+		705FCC221CB4B25F00ED07E1 /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 705FCC211CB4B23100ED07E1 /* libReveal.dylib */; };
+		705FCC241CB4B28500ED07E1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC231CB4B28500ED07E1 /* libz.tbd */; };
+		705FCC261CB4B28D00ED07E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC251CB4B28D00ED07E1 /* CFNetwork.framework */; };
+		705FCC281CB4B29500ED07E1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC271CB4B29500ED07E1 /* QuartzCore.framework */; };
+		705FCC2A1CB4B2A200ED07E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC291CB4B2A200ED07E1 /* CoreGraphics.framework */; };
 		7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7087FF9D1CA156BE00045471 /* TimeLine.swift */; };
 		7091311E1CA6512900A009E9 /* KZCoreLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */; };
 		7091311F1CA6512900A009E9 /* KZCoreUILibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; };
@@ -71,6 +76,11 @@
 		705983441C9D04A2006B697A /* PieSliceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceLayer.swift; sourceTree = "<group>"; };
 		705983461C9D04AF006B697A /* PieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceProgressLayer.swift; sourceTree = "<group>"; };
 		7059836D1C9FE924006B697A /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		705FCC211CB4B23100ED07E1 /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libReveal.dylib; path = "../../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib"; sourceTree = "<group>"; };
+		705FCC231CB4B28500ED07E1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		705FCC251CB4B28D00ED07E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		705FCC271CB4B29500ED07E1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		705FCC291CB4B2A200ED07E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7087FF9D1CA156BE00045471 /* TimeLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLine.swift; path = TimeLine/TimeLine.swift; sourceTree = "<group>"; };
 		7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreLibrary.framework; path = Carthage/Build/iOS/KZCoreLibrary.framework; sourceTree = "<group>"; };
 		7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreUILibrary.framework; path = Carthage/Build/iOS/KZCoreUILibrary.framework; sourceTree = "<group>"; };
@@ -84,6 +94,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705FCC2A1CB4B2A200ED07E1 /* CoreGraphics.framework in Frameworks */,
+				705FCC281CB4B29500ED07E1 /* QuartzCore.framework in Frameworks */,
+				705FCC261CB4B28D00ED07E1 /* CFNetwork.framework in Frameworks */,
+				705FCC241CB4B28500ED07E1 /* libz.tbd in Frameworks */,
 				709131241CA66C5600A009E9 /* KZCoreLibrary.framework in Frameworks */,
 				7091311F1CA6512900A009E9 /* KZCoreUILibrary.framework in Frameworks */,
 				709131261CA66C5600A009E9 /* KZCoreUILibrary.framework in Frameworks */,
@@ -121,6 +135,10 @@
 		705983191C9D0311006B697A = {
 			isa = PBXGroup;
 			children = (
+				705FCC291CB4B2A200ED07E1 /* CoreGraphics.framework */,
+				705FCC271CB4B29500ED07E1 /* QuartzCore.framework */,
+				705FCC251CB4B28D00ED07E1 /* CFNetwork.framework */,
+				705FCC231CB4B28500ED07E1 /* libz.tbd */,
 				705983241C9D0311006B697A /* KumiteStopWatch */,
 				705983231C9D0311006B697A /* Products */,
 			);
@@ -231,6 +249,7 @@
 		7091311B1CA6511900A009E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				705FCC211CB4B23100ED07E1 /* libReveal.dylib */,
 				7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */,
 				7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */,
 			);
@@ -249,6 +268,7 @@
 				7059831F1C9D0311006B697A /* Frameworks */,
 				705983201C9D0311006B697A /* Resources */,
 				709131281CA66C5700A009E9 /* Embed Frameworks */,
+				705FCC2B1CB4B2C500ED07E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -297,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705FCC221CB4B25F00ED07E1 /* libReveal.dylib in Resources */,
 				705983301C9D0311006B697A /* LaunchScreen.storyboard in Resources */,
 				7059832D1C9D0311006B697A /* Assets.xcassets in Resources */,
 				7059832B1C9D0311006B697A /* Main.storyboard in Resources */,
@@ -304,6 +325,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		705FCC2B1CB4B2C500ED07E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nif [ -n \"${CODE_SIGN_IDENTITY}\" ]; then\ncodesign -fs \"${CODE_SIGN_IDENTITY}\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7059831E1C9D0311006B697A /* Sources */ = {

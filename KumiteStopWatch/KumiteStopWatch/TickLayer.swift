@@ -82,6 +82,7 @@ public class TickLayer: CALayer, Animatable, Colorful {
 	}
 	
 	func configure() {
+		needsDisplayOnBoundsChange = true
 	}
 	
 	/*

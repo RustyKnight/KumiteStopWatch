@@ -30,6 +30,13 @@ public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer, Colorful {
 		super.init()
 		configure()
 	}
+	
+	public override init(layer: AnyObject) {
+		super.init(layer: layer)
+		if let layer = layer as? ConicalFillPieSliceProgressLayer {
+			colorBand = layer.colorBand
+		}
+	}
 
 	func invalidateBuffer() {
 		buffer = nil
@@ -39,8 +46,15 @@ public class ConicalFillPieSliceProgressLayer: PieSliceProgressLayer, Colorful {
 
 extension ConicalFillPieSliceProgressLayer: PieSliceProgressLayerDelegate {
 
+	public override var frame: CGRect {
+		didSet {
+			invalidateBuffer()
+		}
+	}
+	
 	override func	configure() {
 		super.configure()
+		needsDisplayOnBoundsChange = true
 		pieSliceProgressLayerDelegate = self
 	}
 

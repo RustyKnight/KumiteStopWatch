@@ -270,6 +270,8 @@ import KZCoreUILibrary
 		
 		for tick in timeLineTickLayers {
 			tick.frame = bounds
+			tick.setNeedsLayout()
+			tick.setNeedsDisplay()
 		}
 	}
 	

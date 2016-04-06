@@ -80,7 +80,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw2-lK-dpp" customClass="StopWatchView" customModule="KumiteStopWatch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="58" width="600" height="542"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="progressLineWidth">
                                         <real key="value" value="0.0"/>
@@ -138,11 +138,11 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yj9-bf-eMK" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" constant="8" id="6xg-io-t2L"/>
-                            <constraint firstItem="rw2-lK-dpp" firstAttribute="top" secondItem="7Zh-M1-6oV" secondAttribute="top" id="EOy-qM-sOB"/>
                             <constraint firstItem="EYG-al-dzn" firstAttribute="top" secondItem="N2o-hB-A5h" secondAttribute="bottom" id="KSE-dY-UIN"/>
                             <constraint firstItem="N2o-hB-A5h" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" id="Nb3-2o-ufd"/>
                             <constraint firstItem="EYG-al-dzn" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leadingMargin" id="P9c-8W-COE"/>
                             <constraint firstItem="N2o-hB-A5h" firstAttribute="top" secondItem="7Zh-M1-6oV" secondAttribute="top" id="UHT-6U-oy7"/>
+                            <constraint firstItem="rw2-lK-dpp" firstAttribute="top" secondItem="N2o-hB-A5h" secondAttribute="bottom" id="X0L-OT-0n6"/>
                             <constraint firstItem="8CZ-mT-C8k" firstAttribute="top" secondItem="rw2-lK-dpp" secondAttribute="bottom" id="XMd-HR-Iw8"/>
                             <constraint firstAttribute="bottom" secondItem="yj9-bf-eMK" secondAttribute="bottom" constant="8" id="YIv-dm-bvu"/>
                             <constraint firstItem="rw2-lK-dpp" firstAttribute="leading" secondItem="7Zh-M1-6oV" secondAttribute="leading" id="bvS-of-1J9"/>

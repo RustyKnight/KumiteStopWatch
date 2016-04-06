@@ -59,7 +59,17 @@ public class PieSliceProgressLayer: CALayer, Animatable {
 		configure()
 	}
 	
+	public override init(layer: AnyObject) {
+		super.init(layer: layer)
+		if let layer = layer as? PieSliceProgressLayer {
+			lineWidth = layer.lineWidth
+			strokeColor = layer.strokeColor
+			pieSliceProgressLayerDelegate = layer.pieSliceProgressLayerDelegate
+		}
+	}
+	
 	func configure() {
+		needsDisplayOnBoundsChange = true
 		maskedProgressLayer.backgroundColor = UIColor.clearColor().CGColor
 		maskedProgressLayer.fillColor = UIColor.blackColor()
 		maskedProgressLayer.strokeColor = UIColor.blackColor()

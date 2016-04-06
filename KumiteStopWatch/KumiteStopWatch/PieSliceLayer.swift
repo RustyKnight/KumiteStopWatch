@@ -44,10 +44,12 @@ public class PieSliceLayer: CALayer {
 	
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+		needsDisplayOnBoundsChange = true
 	}
 	
 	public override init() {
 		super.init()
+		needsDisplayOnBoundsChange = true
 	}
 	
 	/*

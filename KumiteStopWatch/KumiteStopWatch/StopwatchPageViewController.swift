@@ -14,6 +14,8 @@ class StopwatchPageViewController: UIPageViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		setNeedsStatusBarAppearanceUpdate()
 		
 		orderedViewControllers.append(loadViewControllerWithIdentifer("KumiteStopWatch"))
 		orderedViewControllers.append(loadViewControllerWithIdentifer("CoolDown"))
@@ -31,12 +33,14 @@ class StopwatchPageViewController: UIPageViewController {
 			viewController.timeLine = kumiteTimeLine
 		}
 
+//		let color = UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0)
+		
 		let coolDownTimeLine = TimeLineBuilder(
 			withName: "1 Minute Cool Down",
 			withDurationOf: 1.0 * 60.0,
 			andIsPausable: true)
-			.startWith(color: UIColor.redColor(), alerts: TimeLineAlert.None)
-			.endWith(color:UIColor.blueColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
+			.startWith(color: UIColor(red: 1.0, green: 0.2, blue: 0.6, alpha: 1.0), alerts: TimeLineAlert.None)
+			.endWith(color:UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
 			.build()
 		
 		if let viewController = orderedViewControllers[1] as? StopWatchViewController {
@@ -70,6 +74,14 @@ class StopwatchPageViewController: UIPageViewController {
 		let storyBoard = UIStoryboard(name: "Main", bundle: nil)
 		print(storyBoard)
 		return storyBoard.instantiateViewControllerWithIdentifier(name)
+	}
+	
+}
+
+extension StopwatchPageViewController {
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return UIStatusBarStyle.LightContent
 	}
 	
 }

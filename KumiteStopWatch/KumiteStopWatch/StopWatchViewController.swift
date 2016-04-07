@@ -10,8 +10,6 @@ import UIKit
 
 class StopWatchViewController: UIViewController {
 	
-	@IBOutlet weak var akaImageView: UIImageView!
-	@IBOutlet weak var shiroImageView: UIImageView!
 	@IBOutlet weak var stopWatchView: StopWatchView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var startPauseButton: UIButton!
@@ -41,20 +39,23 @@ class StopWatchViewController: UIViewController {
 		resetButton.setTitle(nil, forState: .Normal)
 		resetButton.setImage(resetImage, forState: UIControlState.Normal)
 		
-		// This was changed, but I caused a massive issue, broke XCode and had
-		// to build it line by line to figure it out :P
-		let builder = TimeLineBuilder(
-			withName: "Kumite",
-			withDurationOf: 2.0 * 60.0)
+//		// This was changed, but I caused a massive issue, broke XCode and had
+//		// to build it line by line to figure it out :P
+//		let builder = TimeLineBuilder(
+//			withName: "Cool down",
+//			withDurationOf: 1.0 * 60.0,
+//			andIsPausable: true)
+//		
+//		builder.startWith(color: UIColor.redColor(), alerts: TimeLineAlert.None)
+//		builder.endWith(color:UIColor.blueColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
+//		
+//		timeLine = builder.build()
 		
-		builder.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)
-		builder.endWith(color:UIColor.redColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
-		builder.add(location: 0.75, color: UIColor.yellowColor(), alerts: TimeLineAlert.FlashBackground, TimeLineAlert.Vibrate)
-		
-		timeLine = builder.build()
-		
-		akaImageView.image = StopwatchControls.imageOfAka()
-		shiroImageView.image = StopwatchControls.imageOfShiro()
+		updateTimeLine()
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		stopWatchView.pause()
 	}
 	
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -67,11 +68,13 @@ class StopWatchViewController: UIViewController {
 	}
 	
 	func updateTimeLine() {
-		stopWatchView.timeLine = timeLine
-		if let timeLine = timeLine {
-			titleLabel.text = timeLine.name
-		} else {
-			titleLabel.text = "A Stopwatch"
+		if let stopWatchView = stopWatchView {
+			stopWatchView.timeLine = timeLine
+			if let timeLine = timeLine {
+				titleLabel.text = timeLine.name
+			} else {
+				titleLabel.text = "A Stopwatch"
+			}
 		}
 	}
 	
@@ -93,6 +96,7 @@ class StopWatchViewController: UIViewController {
 }
 
 extension StopWatchViewController: StopWatchDelegate {
+	
 	func stopWatch(stopWatchView: StopWatchView, stateDidChange state: AnimationState) {
 		switch (state) {
 		case .Stopped:

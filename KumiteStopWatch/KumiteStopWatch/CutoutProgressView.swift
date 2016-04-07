@@ -144,7 +144,8 @@ public class CutoutProgressView: UIView {
 
 		let timeLine = TimeLineBuilder(
 		withName: "Kumite",
-				withDurationOf: 2.0 * 60.0)
+				withDurationOf: 2.0 * 60.0,
+				andIsPausable: true)
 //				startWithColor: UIColor.greenColor(),
 //				endWithColor: UIColor.redColor())
 			.startWith(color: UIColor.greenColor(), alerts: TimeLineAlert.None)

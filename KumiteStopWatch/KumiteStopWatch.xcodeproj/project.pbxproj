@@ -29,6 +29,8 @@
 		705FCC261CB4B28D00ED07E1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC251CB4B28D00ED07E1 /* CFNetwork.framework */; };
 		705FCC281CB4B29500ED07E1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC271CB4B29500ED07E1 /* QuartzCore.framework */; };
 		705FCC2A1CB4B2A200ED07E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705FCC291CB4B2A200ED07E1 /* CoreGraphics.framework */; };
+		706258B51CB63FE200960848 /* StopwatchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706258B41CB63FE200960848 /* StopwatchPageViewController.swift */; };
+		706258B71CB6423800960848 /* KumiteStopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706258B61CB6423800960848 /* KumiteStopwatchViewController.swift */; };
 		7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7087FF9D1CA156BE00045471 /* TimeLine.swift */; };
 		7091311E1CA6512900A009E9 /* KZCoreLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */; };
 		7091311F1CA6512900A009E9 /* KZCoreUILibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */; };
@@ -81,6 +83,8 @@
 		705FCC251CB4B28D00ED07E1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		705FCC271CB4B29500ED07E1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		705FCC291CB4B2A200ED07E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		706258B41CB63FE200960848 /* StopwatchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchPageViewController.swift; sourceTree = "<group>"; };
+		706258B61CB6423800960848 /* KumiteStopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KumiteStopwatchViewController.swift; sourceTree = "<group>"; };
 		7087FF9D1CA156BE00045471 /* TimeLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLine.swift; path = TimeLine/TimeLine.swift; sourceTree = "<group>"; };
 		7091311C1CA6512900A009E9 /* KZCoreLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreLibrary.framework; path = Carthage/Build/iOS/KZCoreLibrary.framework; sourceTree = "<group>"; };
 		7091311D1CA6512900A009E9 /* KZCoreUILibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZCoreUILibrary.framework; path = Carthage/Build/iOS/KZCoreUILibrary.framework; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 			children = (
 				705983271C9D0311006B697A /* ViewController.swift */,
 				70535FE51CACC39400295CA2 /* StopWatchViewController.swift */,
+				706258B41CB63FE200960848 /* StopwatchPageViewController.swift */,
+				706258B61CB6423800960848 /* KumiteStopwatchViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 			files = (
 				709131231CA6574D00A009E9 /* ConicalFillPieSliceProgressLayer.swift in Sources */,
 				70F24B551CB20D8000AA9F4E /* Extensions.swift in Sources */,
+				706258B51CB63FE200960848 /* StopwatchPageViewController.swift in Sources */,
 				7087FF9E1CA156BE00045471 /* TimeLine.swift in Sources */,
 				705983421C9D0491006B697A /* OverlayCutoutLayer.swift in Sources */,
 				70535FE91CACED9600295CA2 /* StopwatchControls.swift in Sources */,
@@ -363,6 +370,7 @@
 				70535FEE1CADC66F00295CA2 /* ProgressLayer.swift in Sources */,
 				705983471C9D04AF006B697A /* PieSliceProgressLayer.swift in Sources */,
 				7059833F1C9D03EA006B697A /* CutoutProgressView.swift in Sources */,
+				706258B71CB6423800960848 /* KumiteStopwatchViewController.swift in Sources */,
 				705983261C9D0311006B697A /* AppDelegate.swift in Sources */,
 				70535FE41CACB37600295CA2 /* Colorful.swift in Sources */,
 			);

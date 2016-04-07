@@ -34,11 +34,13 @@ public struct TimeLine {
 	public let duration: NSTimeInterval
 	public let events: [TimeLineEvent]
 	public let colorBand: ColorBand
+	public let pausable: Bool
 	
-	public init(withName: String, withDuration: NSTimeInterval, andEvents:[TimeLineEvent]) {
+	public init(withName: String, withDuration: NSTimeInterval, isPausable: Bool, andEvents:[TimeLineEvent]) {
 		self.name = withName
 		self.duration = withDuration
 		self.events = andEvents
+		self.pausable = isPausable
 		
 		var colorBandEntries: [ColorBandEntry] = []
 		for event in events {
@@ -56,10 +58,12 @@ public class TimeLineBuilder {
 	private var events: [TimeLineEvent] = []
 	private var duration: NSTimeInterval
 	private var name: String
+	private var pausable: Bool
 	
-	public init(withName name: String, withDurationOf: NSTimeInterval) {
+	public init(withName name: String, withDurationOf: NSTimeInterval, andIsPausable pausable: Bool) {
 		self.duration = withDurationOf
 		self.name = name
+		self.pausable = pausable
 	}
 	
 	public func startWith(color color: UIColor, alerts: TimeLineAlert...) -> TimeLineBuilder {
@@ -86,7 +90,7 @@ public class TimeLineBuilder {
 			return evt1.location < evt2.location
 		}
 		
-		return TimeLine(withName: name, withDuration: duration, andEvents: events)
+		return TimeLine(withName: name, withDuration: duration, isPausable: pausable, andEvents: events)
 	}
 }
 

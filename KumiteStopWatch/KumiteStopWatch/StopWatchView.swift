@@ -234,14 +234,16 @@ import KZCoreUILibrary
 		}
 		timeLineTickLayers.removeAll()
 		if let timeLine = timeLine {
-			for index in 1...timeLine.events.count - 2 {
-				let evt = timeLine.events[index]
-				let tick = TickLayer(timeLineEvent: evt)
-				tick.radiusScale = tickLayer.radiusScale
-				tick.frame = bounds
-				
-				timeLineTickLayers.append(tick)
-				layer.addSublayer(tick)
+			if timeLine.events.count > 2 {
+				for index in 1...timeLine.events.count - 2 {
+					let evt = timeLine.events[index]
+					let tick = TickLayer(timeLineEvent: evt)
+					tick.radiusScale = tickLayer.radiusScale
+					tick.frame = bounds
+					
+					timeLineTickLayers.append(tick)
+					layer.addSublayer(tick)
+				}
 			}
 		}
 		
@@ -284,11 +286,11 @@ public extension StopWatchView {
 	}
 	
 	public func start() {
-		UIApplication.sharedApplication().idleTimerDisabled = true
 		if let timeLine = timeLine {
+			UIApplication.sharedApplication().idleTimerDisabled = true
 			animationManager.start(withDurationOf: timeLine.duration, withDelegate: self)
+			overlayLayer.startAnimation()
 		}
-		overlayLayer.startAnimation()
 	}
 	
 	public func stop(andReset reset: Bool = false) {
@@ -299,20 +301,30 @@ public extension StopWatchView {
 	}
 	
 	public func pause() {
-		animationManager.pause()
-		stopWatchStateDidChange()
+		if let timeLine = timeLine {
+			if timeLine.pausable && animationManager.currentState() == .Running {
+				animationManager.pause()
+				stopWatchStateDidChange()
+			}
+		}
 	}
 	
 	public func resume() {
-		animationManager.resume()
-		stopWatchStateDidChange()
+		if let timeLine = timeLine {
+			if timeLine.pausable && animationManager.currentState() == .Paused {
+				animationManager.resume()
+				stopWatchStateDidChange()
+			}
+		}
 	}
 	
 	public func reset() {
-		if currentAnimationState() == .Paused {
-			resume()
+		if timeLine != nil {
+			if currentAnimationState() == .Paused {
+				resume()
+			}
+			stop(andReset: true)
 		}
-		stop(andReset: true)
 	}
 	
 	public override func animationDidStart(anim: CAAnimation) {

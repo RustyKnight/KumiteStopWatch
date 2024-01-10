@@ -1,4 +1,4 @@
-#Kumite Stop Watch
+# Kumite Stop Watch
 
 The Kumite Stop Watch is a purpose built, 2 minute stop watch, with a 1 minute 30 second "alert", which can be used to time kumite (sparing) bouts
 
@@ -18,7 +18,7 @@ Instead, the intention is to require a flexible time line, which allows differen
 
 ![Initial Start Screen](https://cloud.githubusercontent.com/assets/10276932/13943958/4f097bae-f055-11e5-82f6-38fb52de91a1.png) ![Completed Run Screen](https://cloud.githubusercontent.com/assets/10276932/13943962/5380480c-f055-11e5-9330-d5ead5352387.png)
 
-#Updated
+# Updated
 
 Updated with "dark side of the moon" interface
 

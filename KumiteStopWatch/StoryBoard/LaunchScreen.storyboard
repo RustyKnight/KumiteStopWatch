@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8150" systemVersion="15A204g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,15 +16,63 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="qBI-ld-upg">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6Tw-1K-6Sf">
+                                <rect key="frame" x="30" y="259.66666666666669" width="333" height="333.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6Tw-1K-6Sf" secondAttribute="height" multiplier="1:1" id="1cp-aU-VJt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KumiteLogo" translatesAutoresizingMaskIntoConstraints="NO" id="gO9-6I-WTp">
+                                <rect key="frame" x="76.666666666666686" y="187.33333333333334" width="240" height="64.333333333333343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="999" constant="240" id="c0e-Uw-oCZ"/>
+                                    <constraint firstAttribute="width" secondItem="gO9-6I-WTp" secondAttribute="height" multiplier="3.73077" id="eFO-CY-2e1"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StopWatchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5bR-tV-LRg">
+                                <rect key="frame" x="24" y="600.66666666666663" width="345" height="68.666666666666629"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="999" constant="340" id="MC7-uJ-Hua"/>
+                                    <constraint firstAttribute="width" secondItem="5bR-tV-LRg" secondAttribute="height" multiplier="5.01524" id="XIj-ml-hdy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qBI-ld-upg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="AjK-RU-ZnE"/>
+                            <constraint firstItem="5bR-tV-LRg" firstAttribute="top" secondItem="6Tw-1K-6Sf" secondAttribute="bottom" constant="8" id="B8L-ll-I1B"/>
+                            <constraint firstAttribute="trailing" secondItem="6Tw-1K-6Sf" secondAttribute="trailing" constant="30" id="Eks-qF-jAM"/>
+                            <constraint firstItem="qBI-ld-upg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="F94-ei-HHO"/>
+                            <constraint firstItem="gO9-6I-WTp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="8" id="PIb-Vw-btd"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="gO9-6I-WTp" secondAttribute="trailing" constant="8" id="WzD-ad-bZO"/>
+                            <constraint firstAttribute="bottom" secondItem="qBI-ld-upg" secondAttribute="bottom" id="XmA-gN-dyN"/>
+                            <constraint firstItem="6Tw-1K-6Sf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZRl-ZQ-Yg2"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="5bR-tV-LRg" secondAttribute="trailing" constant="8" id="ZZb-Nc-Bwq"/>
+                            <constraint firstItem="6Tw-1K-6Sf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bW3-tp-rfx"/>
+                            <constraint firstItem="6Tw-1K-6Sf" firstAttribute="top" secondItem="gO9-6I-WTp" secondAttribute="bottom" constant="8" id="e8V-Fg-CmR"/>
+                            <constraint firstItem="6Tw-1K-6Sf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="30" id="fIp-d3-kUp"/>
+                            <constraint firstItem="5bR-tV-LRg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gV5-i5-U7q"/>
+                            <constraint firstAttribute="trailing" secondItem="qBI-ld-upg" secondAttribute="trailing" id="jk7-1z-Ngv"/>
+                            <constraint firstItem="5bR-tV-LRg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="8" id="mlC-vL-rCV"/>
+                            <constraint firstItem="gO9-6I-WTp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wsD-Fi-NOo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="200" height="900"/>
+        <image name="KumiteLogo" width="970" height="260"/>
+        <image name="LaunchLogo" width="1024" height="1024"/>
+        <image name="StopWatchLogo" width="1646" height="328"/>
+    </resources>
 </document>

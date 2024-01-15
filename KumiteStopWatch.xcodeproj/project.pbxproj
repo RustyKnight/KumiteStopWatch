@@ -1,0 +1,799 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		701BBAA72B54A1F700C7F4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BBAA62B54A1F700C7F4C0 /* AppDelegate.swift */; };
+		701BBAA92B54A1F700C7F4C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BBAA82B54A1F700C7F4C0 /* SceneDelegate.swift */; };
+		701BBAB02B54A1F800C7F4C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701BBAAF2B54A1F800C7F4C0 /* Assets.xcassets */; };
+		701BBABE2B54A1F800C7F4C0 /* KumiteStopWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BBABD2B54A1F800C7F4C0 /* KumiteStopWatchTests.swift */; };
+		701BBAC82B54A1F800C7F4C0 /* KumiteStopWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BBAC72B54A1F800C7F4C0 /* KumiteStopWatchUITests.swift */; };
+		701BBACA2B54A1F800C7F4C0 /* KumiteStopWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BBAC92B54A1F800C7F4C0 /* KumiteStopWatchUITestsLaunchTests.swift */; };
+		7049CE822B54A25D00FADBC4 /* KZCoreUILibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 7049CE812B54A25D00FADBC4 /* KZCoreUILibrary */; };
+		7049CE862B54A2A800FADBC4 /* StopwatchControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE852B54A2A800FADBC4 /* StopwatchControls.swift */; };
+		7049CE8E2B54A30500FADBC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7049CE8C2B54A30500FADBC4 /* LaunchScreen.storyboard */; };
+		7049CE8F2B54A30500FADBC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7049CE8D2B54A30500FADBC4 /* Main.storyboard */; };
+		7049CE922B54A32000FADBC4 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE912B54A32000FADBC4 /* TimeLine.swift */; };
+		7049CE972B54A33600FADBC4 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE942B54A33600FADBC4 /* AnimationManager.swift */; };
+		7049CE982B54A33600FADBC4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE952B54A33600FADBC4 /* Extensions.swift */; };
+		7049CE992B54A33600FADBC4 /* StopWatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE962B54A33600FADBC4 /* StopWatchDelegate.swift */; };
+		7049CE9F2B54A34A00FADBC4 /* StopwatchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE9B2B54A34A00FADBC4 /* StopwatchPageViewController.swift */; };
+		7049CEA02B54A34A00FADBC4 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE9C2B54A34A00FADBC4 /* StopWatchViewController.swift */; };
+		7049CEA12B54A34A00FADBC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE9D2B54A34A00FADBC4 /* ViewController.swift */; };
+		7049CEA22B54A34A00FADBC4 /* KumiteStopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CE9E2B54A34A00FADBC4 /* KumiteStopwatchViewController.swift */; };
+		7049CEA82B54A36000FADBC4 /* Colorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEA42B54A35F00FADBC4 /* Colorful.swift */; };
+		7049CEAA2B54A36000FADBC4 /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEA62B54A36000FADBC4 /* StopWatchView.swift */; };
+		7049CEAB2B54A36000FADBC4 /* CutoutProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEA72B54A36000FADBC4 /* CutoutProgressView.swift */; };
+		7049CEAE2B54A38D00FADBC4 /* OverlayCutoutLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEAD2B54A38D00FADBC4 /* OverlayCutoutLayer.swift */; };
+		7049CEB42B54A39F00FADBC4 /* TickLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEB02B54A39F00FADBC4 /* TickLayer.swift */; };
+		7049CEB52B54A39F00FADBC4 /* PieSliceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEB12B54A39F00FADBC4 /* PieSliceLayer.swift */; };
+		7049CEB62B54A39F00FADBC4 /* PieSliceProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEB22B54A39F00FADBC4 /* PieSliceProgressLayer.swift */; };
+		7049CEB72B54A39F00FADBC4 /* ConicalFillPieSliceProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEB32B54A39F00FADBC4 /* ConicalFillPieSliceProgressLayer.swift */; };
+		7049CEBA2B54A3B300FADBC4 /* ProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEB92B54A3B300FADBC4 /* ProgressLayer.swift */; };
+		7049CEBD2B54A3C700FADBC4 /* TextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049CEBC2B54A3C700FADBC4 /* TextLayer.swift */; };
+		7049CEC02B54C07F00FADBC4 /* Cadmus in Frameworks */ = {isa = PBXBuildFile; productRef = 7049CEBF2B54C07F00FADBC4 /* Cadmus */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		701BBABA2B54A1F800C7F4C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 701BBA9B2B54A1F700C7F4C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 701BBAA22B54A1F700C7F4C0;
+			remoteInfo = KumiteStopWatch;
+		};
+		701BBAC42B54A1F800C7F4C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 701BBA9B2B54A1F700C7F4C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 701BBAA22B54A1F700C7F4C0;
+			remoteInfo = KumiteStopWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		701BBAA32B54A1F700C7F4C0 /* KumiteStopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KumiteStopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		701BBAA62B54A1F700C7F4C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		701BBAA82B54A1F700C7F4C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		701BBAAF2B54A1F800C7F4C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		701BBAB42B54A1F800C7F4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		701BBAB92B54A1F800C7F4C0 /* KumiteStopWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumiteStopWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		701BBABD2B54A1F800C7F4C0 /* KumiteStopWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumiteStopWatchTests.swift; sourceTree = "<group>"; };
+		701BBAC32B54A1F800C7F4C0 /* KumiteStopWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumiteStopWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		701BBAC72B54A1F800C7F4C0 /* KumiteStopWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumiteStopWatchUITests.swift; sourceTree = "<group>"; };
+		701BBAC92B54A1F800C7F4C0 /* KumiteStopWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumiteStopWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7049CE852B54A2A800FADBC4 /* StopwatchControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchControls.swift; sourceTree = "<group>"; };
+		7049CE8C2B54A30500FADBC4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7049CE8D2B54A30500FADBC4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7049CE912B54A32000FADBC4 /* TimeLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLine.swift; sourceTree = "<group>"; };
+		7049CE942B54A33600FADBC4 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		7049CE952B54A33600FADBC4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7049CE962B54A33600FADBC4 /* StopWatchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchDelegate.swift; sourceTree = "<group>"; };
+		7049CE9B2B54A34A00FADBC4 /* StopwatchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchPageViewController.swift; sourceTree = "<group>"; };
+		7049CE9C2B54A34A00FADBC4 /* StopWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
+		7049CE9D2B54A34A00FADBC4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7049CE9E2B54A34A00FADBC4 /* KumiteStopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KumiteStopwatchViewController.swift; sourceTree = "<group>"; };
+		7049CEA42B54A35F00FADBC4 /* Colorful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorful.swift; sourceTree = "<group>"; };
+		7049CEA62B54A36000FADBC4 /* StopWatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+		7049CEA72B54A36000FADBC4 /* CutoutProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutoutProgressView.swift; sourceTree = "<group>"; };
+		7049CEAD2B54A38D00FADBC4 /* OverlayCutoutLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayCutoutLayer.swift; sourceTree = "<group>"; };
+		7049CEB02B54A39F00FADBC4 /* TickLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickLayer.swift; sourceTree = "<group>"; };
+		7049CEB12B54A39F00FADBC4 /* PieSliceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceLayer.swift; sourceTree = "<group>"; };
+		7049CEB22B54A39F00FADBC4 /* PieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceProgressLayer.swift; sourceTree = "<group>"; };
+		7049CEB32B54A39F00FADBC4 /* ConicalFillPieSliceProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConicalFillPieSliceProgressLayer.swift; sourceTree = "<group>"; };
+		7049CEB92B54A3B300FADBC4 /* ProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressLayer.swift; sourceTree = "<group>"; };
+		7049CEBC2B54A3C700FADBC4 /* TextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		701BBAA02B54A1F700C7F4C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7049CE822B54A25D00FADBC4 /* KZCoreUILibrary in Frameworks */,
+				7049CEC02B54C07F00FADBC4 /* Cadmus in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBAB62B54A1F800C7F4C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBAC02B54A1F800C7F4C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		701BBA9A2B54A1F700C7F4C0 = {
+			isa = PBXGroup;
+			children = (
+				701BBAA52B54A1F700C7F4C0 /* KumiteStopWatch */,
+				701BBABC2B54A1F800C7F4C0 /* KumiteStopWatchTests */,
+				701BBAC62B54A1F800C7F4C0 /* KumiteStopWatchUITests */,
+				701BBAA42B54A1F700C7F4C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		701BBAA42B54A1F700C7F4C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				701BBAA32B54A1F700C7F4C0 /* KumiteStopWatch.app */,
+				701BBAB92B54A1F800C7F4C0 /* KumiteStopWatchTests.xctest */,
+				701BBAC32B54A1F800C7F4C0 /* KumiteStopWatchUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		701BBAA52B54A1F700C7F4C0 /* KumiteStopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				701BBAB42B54A1F800C7F4C0 /* Info.plist */,
+				701BBAA62B54A1F700C7F4C0 /* AppDelegate.swift */,
+				701BBAA82B54A1F700C7F4C0 /* SceneDelegate.swift */,
+				7049CE832B54A28200FADBC4 /* Assets */,
+				7049CE8B2B54A2F800FADBC4 /* StoryBoard */,
+				7049CE842B54A29A00FADBC4 /* StyleKits */,
+				7049CE902B54A31100FADBC4 /* TimeLine */,
+				7049CE932B54A32900FADBC4 /* Utilities */,
+				7049CEA32B54A35200FADBC4 /* View */,
+				7049CE9A2B54A33C00FADBC4 /* ViewControllers */,
+			);
+			path = KumiteStopWatch;
+			sourceTree = "<group>";
+		};
+		701BBABC2B54A1F800C7F4C0 /* KumiteStopWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				701BBABD2B54A1F800C7F4C0 /* KumiteStopWatchTests.swift */,
+			);
+			path = KumiteStopWatchTests;
+			sourceTree = "<group>";
+		};
+		701BBAC62B54A1F800C7F4C0 /* KumiteStopWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				701BBAC72B54A1F800C7F4C0 /* KumiteStopWatchUITests.swift */,
+				701BBAC92B54A1F800C7F4C0 /* KumiteStopWatchUITestsLaunchTests.swift */,
+			);
+			path = KumiteStopWatchUITests;
+			sourceTree = "<group>";
+		};
+		7049CE832B54A28200FADBC4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				701BBAAF2B54A1F800C7F4C0 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7049CE842B54A29A00FADBC4 /* StyleKits */ = {
+			isa = PBXGroup;
+			children = (
+				7049CE852B54A2A800FADBC4 /* StopwatchControls.swift */,
+			);
+			path = StyleKits;
+			sourceTree = "<group>";
+		};
+		7049CE8B2B54A2F800FADBC4 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				7049CE8C2B54A30500FADBC4 /* LaunchScreen.storyboard */,
+				7049CE8D2B54A30500FADBC4 /* Main.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		7049CE902B54A31100FADBC4 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				7049CE912B54A32000FADBC4 /* TimeLine.swift */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		7049CE932B54A32900FADBC4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7049CE942B54A33600FADBC4 /* AnimationManager.swift */,
+				7049CE952B54A33600FADBC4 /* Extensions.swift */,
+				7049CE962B54A33600FADBC4 /* StopWatchDelegate.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7049CE9A2B54A33C00FADBC4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7049CE9E2B54A34A00FADBC4 /* KumiteStopwatchViewController.swift */,
+				7049CE9B2B54A34A00FADBC4 /* StopwatchPageViewController.swift */,
+				7049CE9C2B54A34A00FADBC4 /* StopWatchViewController.swift */,
+				7049CE9D2B54A34A00FADBC4 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7049CEA32B54A35200FADBC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7049CEA42B54A35F00FADBC4 /* Colorful.swift */,
+				7049CEA72B54A36000FADBC4 /* CutoutProgressView.swift */,
+				7049CEA62B54A36000FADBC4 /* StopWatchView.swift */,
+				7049CEAC2B54A38500FADBC4 /* OverlayCutout */,
+				7049CEAF2B54A39400FADBC4 /* PieSlice */,
+				7049CEB82B54A3AB00FADBC4 /* ProgressLayer */,
+				7049CEBB2B54A3BD00FADBC4 /* TextLayer */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7049CEAC2B54A38500FADBC4 /* OverlayCutout */ = {
+			isa = PBXGroup;
+			children = (
+				7049CEAD2B54A38D00FADBC4 /* OverlayCutoutLayer.swift */,
+			);
+			path = OverlayCutout;
+			sourceTree = "<group>";
+		};
+		7049CEAF2B54A39400FADBC4 /* PieSlice */ = {
+			isa = PBXGroup;
+			children = (
+				7049CEB32B54A39F00FADBC4 /* ConicalFillPieSliceProgressLayer.swift */,
+				7049CEB12B54A39F00FADBC4 /* PieSliceLayer.swift */,
+				7049CEB22B54A39F00FADBC4 /* PieSliceProgressLayer.swift */,
+				7049CEB02B54A39F00FADBC4 /* TickLayer.swift */,
+			);
+			path = PieSlice;
+			sourceTree = "<group>";
+		};
+		7049CEB82B54A3AB00FADBC4 /* ProgressLayer */ = {
+			isa = PBXGroup;
+			children = (
+				7049CEB92B54A3B300FADBC4 /* ProgressLayer.swift */,
+			);
+			path = ProgressLayer;
+			sourceTree = "<group>";
+		};
+		7049CEBB2B54A3BD00FADBC4 /* TextLayer */ = {
+			isa = PBXGroup;
+			children = (
+				7049CEBC2B54A3C700FADBC4 /* TextLayer.swift */,
+			);
+			path = TextLayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		701BBAA22B54A1F700C7F4C0 /* KumiteStopWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 701BBACD2B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatch" */;
+			buildPhases = (
+				701BBA9F2B54A1F700C7F4C0 /* Sources */,
+				701BBAA02B54A1F700C7F4C0 /* Frameworks */,
+				701BBAA12B54A1F700C7F4C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KumiteStopWatch;
+			packageProductDependencies = (
+				7049CE812B54A25D00FADBC4 /* KZCoreUILibrary */,
+				7049CEBF2B54C07F00FADBC4 /* Cadmus */,
+			);
+			productName = KumiteStopWatch;
+			productReference = 701BBAA32B54A1F700C7F4C0 /* KumiteStopWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		701BBAB82B54A1F800C7F4C0 /* KumiteStopWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 701BBAD02B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatchTests" */;
+			buildPhases = (
+				701BBAB52B54A1F800C7F4C0 /* Sources */,
+				701BBAB62B54A1F800C7F4C0 /* Frameworks */,
+				701BBAB72B54A1F800C7F4C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				701BBABB2B54A1F800C7F4C0 /* PBXTargetDependency */,
+			);
+			name = KumiteStopWatchTests;
+			productName = KumiteStopWatchTests;
+			productReference = 701BBAB92B54A1F800C7F4C0 /* KumiteStopWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		701BBAC22B54A1F800C7F4C0 /* KumiteStopWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 701BBAD32B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatchUITests" */;
+			buildPhases = (
+				701BBABF2B54A1F800C7F4C0 /* Sources */,
+				701BBAC02B54A1F800C7F4C0 /* Frameworks */,
+				701BBAC12B54A1F800C7F4C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				701BBAC52B54A1F800C7F4C0 /* PBXTargetDependency */,
+			);
+			name = KumiteStopWatchUITests;
+			productName = KumiteStopWatchUITests;
+			productReference = 701BBAC32B54A1F800C7F4C0 /* KumiteStopWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		701BBA9B2B54A1F700C7F4C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					701BBAA22B54A1F700C7F4C0 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					701BBAB82B54A1F800C7F4C0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 701BBAA22B54A1F700C7F4C0;
+					};
+					701BBAC22B54A1F800C7F4C0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 701BBAA22B54A1F700C7F4C0;
+					};
+				};
+			};
+			buildConfigurationList = 701BBA9E2B54A1F700C7F4C0 /* Build configuration list for PBXProject "KumiteStopWatch" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 701BBA9A2B54A1F700C7F4C0;
+			packageReferences = (
+				7049CE802B54A25D00FADBC4 /* XCRemoteSwiftPackageReference "KZCoreUILibrary" */,
+				7049CEBE2B54C07F00FADBC4 /* XCRemoteSwiftPackageReference "Cadmus" */,
+			);
+			productRefGroup = 701BBAA42B54A1F700C7F4C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				701BBAA22B54A1F700C7F4C0 /* KumiteStopWatch */,
+				701BBAB82B54A1F800C7F4C0 /* KumiteStopWatchTests */,
+				701BBAC22B54A1F800C7F4C0 /* KumiteStopWatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		701BBAA12B54A1F700C7F4C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7049CE8F2B54A30500FADBC4 /* Main.storyboard in Resources */,
+				701BBAB02B54A1F800C7F4C0 /* Assets.xcassets in Resources */,
+				7049CE8E2B54A30500FADBC4 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBAB72B54A1F800C7F4C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBAC12B54A1F800C7F4C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		701BBA9F2B54A1F700C7F4C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7049CEB72B54A39F00FADBC4 /* ConicalFillPieSliceProgressLayer.swift in Sources */,
+				7049CEAE2B54A38D00FADBC4 /* OverlayCutoutLayer.swift in Sources */,
+				7049CEA12B54A34A00FADBC4 /* ViewController.swift in Sources */,
+				7049CEB42B54A39F00FADBC4 /* TickLayer.swift in Sources */,
+				7049CEAA2B54A36000FADBC4 /* StopWatchView.swift in Sources */,
+				7049CE922B54A32000FADBC4 /* TimeLine.swift in Sources */,
+				7049CE982B54A33600FADBC4 /* Extensions.swift in Sources */,
+				7049CEB62B54A39F00FADBC4 /* PieSliceProgressLayer.swift in Sources */,
+				701BBAA72B54A1F700C7F4C0 /* AppDelegate.swift in Sources */,
+				7049CE992B54A33600FADBC4 /* StopWatchDelegate.swift in Sources */,
+				7049CEA02B54A34A00FADBC4 /* StopWatchViewController.swift in Sources */,
+				701BBAA92B54A1F700C7F4C0 /* SceneDelegate.swift in Sources */,
+				7049CEA82B54A36000FADBC4 /* Colorful.swift in Sources */,
+				7049CEBD2B54A3C700FADBC4 /* TextLayer.swift in Sources */,
+				7049CEA22B54A34A00FADBC4 /* KumiteStopwatchViewController.swift in Sources */,
+				7049CE862B54A2A800FADBC4 /* StopwatchControls.swift in Sources */,
+				7049CE972B54A33600FADBC4 /* AnimationManager.swift in Sources */,
+				7049CEBA2B54A3B300FADBC4 /* ProgressLayer.swift in Sources */,
+				7049CEB52B54A39F00FADBC4 /* PieSliceLayer.swift in Sources */,
+				7049CE9F2B54A34A00FADBC4 /* StopwatchPageViewController.swift in Sources */,
+				7049CEAB2B54A36000FADBC4 /* CutoutProgressView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBAB52B54A1F800C7F4C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701BBABE2B54A1F800C7F4C0 /* KumiteStopWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		701BBABF2B54A1F800C7F4C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701BBAC82B54A1F800C7F4C0 /* KumiteStopWatchUITests.swift in Sources */,
+				701BBACA2B54A1F800C7F4C0 /* KumiteStopWatchUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		701BBABB2B54A1F800C7F4C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 701BBAA22B54A1F700C7F4C0 /* KumiteStopWatch */;
+			targetProxy = 701BBABA2B54A1F800C7F4C0 /* PBXContainerItemProxy */;
+		};
+		701BBAC52B54A1F800C7F4C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 701BBAA22B54A1F700C7F4C0 /* KumiteStopWatch */;
+			targetProxy = 701BBAC42B54A1F800C7F4C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		701BBACB2B54A1F800C7F4C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		701BBACC2B54A1F800C7F4C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		701BBACE2B54A1F800C7F4C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KumiteStopWatch/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		701BBACF2B54A1F800C7F4C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KumiteStopWatch/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		701BBAD12B54A1F800C7F4C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KumiteStopWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KumiteStopWatch";
+			};
+			name = Debug;
+		};
+		701BBAD22B54A1F800C7F4C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KumiteStopWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KumiteStopWatch";
+			};
+			name = Release;
+		};
+		701BBAD42B54A1F800C7F4C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KumiteStopWatch;
+			};
+			name = Debug;
+		};
+		701BBAD52B54A1F800C7F4C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWXH886EY3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizen.KumiteStopWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KumiteStopWatch;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		701BBA9E2B54A1F700C7F4C0 /* Build configuration list for PBXProject "KumiteStopWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701BBACB2B54A1F800C7F4C0 /* Debug */,
+				701BBACC2B54A1F800C7F4C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		701BBACD2B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701BBACE2B54A1F800C7F4C0 /* Debug */,
+				701BBACF2B54A1F800C7F4C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		701BBAD02B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701BBAD12B54A1F800C7F4C0 /* Debug */,
+				701BBAD22B54A1F800C7F4C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		701BBAD32B54A1F800C7F4C0 /* Build configuration list for PBXNativeTarget "KumiteStopWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701BBAD42B54A1F800C7F4C0 /* Debug */,
+				701BBAD52B54A1F800C7F4C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7049CE802B54A25D00FADBC4 /* XCRemoteSwiftPackageReference "KZCoreUILibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RustyKnight/KZCoreUILibrary";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		7049CEBE2B54C07F00FADBC4 /* XCRemoteSwiftPackageReference "Cadmus" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RustyKnight/Cadmus";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7049CE812B54A25D00FADBC4 /* KZCoreUILibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7049CE802B54A25D00FADBC4 /* XCRemoteSwiftPackageReference "KZCoreUILibrary" */;
+			productName = KZCoreUILibrary;
+		};
+		7049CEBF2B54C07F00FADBC4 /* Cadmus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7049CEBE2B54C07F00FADBC4 /* XCRemoteSwiftPackageReference "Cadmus" */;
+			productName = Cadmus;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 701BBA9B2B54A1F700C7F4C0 /* Project object */;
+}

@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "cadmus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RustyKnight/Cadmus",
+      "state" : {
+        "revision" : "f2d1d470016ad4e440517e6208c62fc9e3bc066d",
+        "version" : "3.0.0"
+      }
+    },
+    {
+      "identity" : "kzcorelibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RustyKnight/KZCoreLibrary",
+      "state" : {
+        "branch" : "master",
+        "revision" : "db7f0bae7e8e950676059162975e1f5931a4a75e"
+      }
+    },
+    {
+      "identity" : "kzcoreuilibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RustyKnight/KZCoreUILibrary",
+      "state" : {
+        "branch" : "master",
+        "revision" : "cbeeb23f3b8415064dbfa29681e0c7ed35324a61"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -18,7 +18,7 @@ class TickLayer: CALayer, Animatable, Colorful {
 		didSet { setNeedsDisplay() }
 	}
 	
-	var fillColor: UIColor? = UIColor.red {
+    @objc var fillColor: UIColor? = UIColor.red {
 		didSet { setNeedsDisplay() }
 	}
 	
@@ -42,17 +42,12 @@ class TickLayer: CALayer, Animatable, Colorful {
 		Represents the angle that the tick should point at in radians
 		This is a convience function for progress
 	*/
-	var angle: CGFloat {
-		set {
-			progress = newValue.toFloat / 360.0.toFloat.toRadians
-		}
-		
-		get {
-			return (360.0.toFloat * progress).toRadians.toCGFloat
-		}
+    @objc var angle: CGFloat {
+		set { progress = newValue.toFloat / 360.0.toFloat.toRadians }
+		get { return (360.0.toFloat * progress).toRadians.toCGFloat }
 	}
 	
-	var progress: Float = 0.0 {
+	@objc var progress: Float = 0.0 {
 		didSet { setNeedsDisplay() }
 	}
 	
@@ -122,27 +117,21 @@ class TickLayer: CALayer, Animatable, Colorful {
 	In our case, we will return an animation for the startAngle and endAngle properties.
 	*/
     override func action(forKey event: String) -> CAAction? {
-		var action: CAAction?
-		if event == "progress" || event == "angle" || event == "fillColor" || event == "fillEffect" {
-			action = self.animation(forKey: event)
-		} else {
-			action = super.action(forKey: event)
-		}
-		return action
+        if event == #keyPath(TickLayer.progress) || event == #keyPath(TickLayer.angle) || event == #keyPath(TickLayer.fillColor) {
+            return self.animation(forKey: event)
+        }
+        return super.action(forKey: event)
 	}
 	
 	/*
 	Finally we also need to override needsDisplayForKey: to tell Core Animation that changes to our
 	startAngle and endAngle properties will require a redraw.
 	*/
-    override class func needsDisplay(forKey key: String) -> Bool {
-		var needsDisplay = false
-		if key == "progress" || key == "angle" || key == "fillColor" || key == "fillEffect" {
-			needsDisplay = true
-		} else {
-			needsDisplay = super.needsDisplay(forKey: key)
-		}
-		return needsDisplay
+    override class func needsDisplay(forKey event: String) -> Bool {
+        if event == #keyPath(TickLayer.progress) || event == #keyPath(TickLayer.angle) || event == #keyPath(TickLayer.fillColor) {
+            return true
+        }
+        return false
 	}
 	
 	/*
@@ -200,11 +189,11 @@ class TickLayer: CALayer, Animatable, Colorful {
 	}
 	
 	func startAnimation(withDurationOf duration:Double, withDelegate: CAAnimationDelegate?) {
-        removeAnimation(forKey: "progress")
-        removeAnimation(forKey: "fillEffect")
+        removeAnimation(forKey: #keyPath(TickLayer.progress))
+        removeAnimation(forKey: #keyPath(TickLayer.fillColor))
 		
 		if let colorBand = colorBand {
-			let keyFrameAnim = CAKeyframeAnimation(keyPath: "fillColor")
+			let keyFrameAnim = CAKeyframeAnimation(keyPath: #keyPath(TickLayer.fillColor))
 
 			var colors: [UIColor] = []
 			var locations: [Double] = []
@@ -216,21 +205,21 @@ class TickLayer: CALayer, Animatable, Colorful {
 			keyFrameAnim.values = colors
             keyFrameAnim.keyTimes = locations.map { NSNumber(floatLiteral: $0) }
 			keyFrameAnim.duration = duration
-            add(keyFrameAnim, forKey: "fillEffect")
+            add(keyFrameAnim, forKey: #keyPath(TickLayer.fillColor))
 		}
 		
-		let anim = CABasicAnimation(keyPath: "progress")
+		let anim = CABasicAnimation(keyPath: #keyPath(TickLayer.progress))
 		anim.delegate = withDelegate
 		
 		anim.fromValue = 0
 		anim.toValue = 1.0
 		anim.duration = duration
-        add(anim, forKey: "progress")
+        add(anim, forKey: #keyPath(TickLayer.progress))
 	}
 	
 	func stopAnimation(andReset reset: Bool = false) {
-        removeAnimation(forKey: "progress")
-        removeAnimation(forKey: "fillEffect")
+        removeAnimation(forKey: #keyPath(TickLayer.progress))
+        removeAnimation(forKey: #keyPath(TickLayer.fillColor))
 		if (reset) {
 			progress = 0.0
 		}

@@ -30,7 +30,6 @@ class PieSliceProgressLayer: CALayer, Animatable {
 
 	var strokeColor: UIColor? {
 		set { progressLayer.strokeColor = newValue }
-		
 		get { return progressLayer.strokeColor }
 	}
 	
@@ -90,11 +89,10 @@ class PieSliceProgressLayer: CALayer, Animatable {
 	}
 
 	func startAnimation(withDurationOf duration: Double, withDelegate: CAAnimationDelegate?) {
-        log(debug: "startAnimation")
-        maskedProgressLayer.removeAnimation(forKey: "endAngle")
-        progressLayer.removeAnimation(forKey: "endAngle")
+        maskedProgressLayer.removeAnimation(forKey: #keyPath(PieSliceLayer.endAngle))
+        progressLayer.removeAnimation(forKey: #keyPath(PieSliceLayer.endAngle))
 		
-		let anim = CABasicAnimation(keyPath: "endAngle")
+		let anim = CABasicAnimation(keyPath: #keyPath(PieSliceLayer.endAngle))
         anim.delegate = withDelegate
 		
 		let range = 360.0
@@ -106,14 +104,13 @@ class PieSliceProgressLayer: CALayer, Animatable {
 		anim.fromValue = -90.0.toRadians
 		anim.toValue = angle.toRadians
 		anim.duration = duration
-        maskedProgressLayer.add(anim, forKey: "endAngle")
-        progressLayer.add(anim, forKey: "endAngle")
+        maskedProgressLayer.add(anim, forKey: #keyPath(PieSliceLayer.endAngle))
+        progressLayer.add(anim, forKey: #keyPath(PieSliceLayer.endAngle))
 	}
 
 	func stopAnimation(andReset reset: Bool = false) {
-        log(debug: "stopAnimation")
-        maskedProgressLayer.removeAnimation(forKey: "endAngle")
-        progressLayer.removeAnimation(forKey: "endAngle")
+        maskedProgressLayer.removeAnimation(forKey: #keyPath(PieSliceLayer.endAngle))
+        progressLayer.removeAnimation(forKey: #keyPath(PieSliceLayer.endAngle))
 		if reset {
 			maskedProgressLayer.endAngle = -90.0.toRadians.toCGFloat
 			progressLayer.endAngle = -90.0.toRadians.toCGFloat

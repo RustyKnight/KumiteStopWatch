@@ -378,8 +378,6 @@ extension StopWatchView: CAAnimationDelegate {
 
 extension StopWatchView: AnimationProgressDelegate {
     func animationProgressedTo(_ progress: Double) {
-        log(debug: "progress = \(progress)")
-        
         if let eventList = eventList {
             if let next = eventList.first {
                 if progress >= next.location {
@@ -505,7 +503,6 @@ class FlashLayer: OverlayLayer, Animatable, CAAnimationDelegate {
      In our case, we will return an animation for the progress property.
      */
     override func action(forKey event: String) -> CAAction? {
-        log(debug: "event = \(event)")
         var action: CAAction?
         if event == "progress" {
             action = self.animation(forKey: event)
@@ -516,7 +513,6 @@ class FlashLayer: OverlayLayer, Animatable, CAAnimationDelegate {
     }
     
     override class func needsDisplay(forKey key: String) -> Bool {
-        log(debug: "event = \(key)")
         var needsDisplay = false
         if key == "progress" {
             needsDisplay = true
@@ -528,7 +524,6 @@ class FlashLayer: OverlayLayer, Animatable, CAAnimationDelegate {
     
     override func draw(in ctx: CGContext) {
         if let delegate = animationDelegate {
-            log(debug: "Progress = \(progress)")
             delegate.animationProgressedTo(progress)
         }
     }
@@ -544,8 +539,6 @@ class FlashLayer: OverlayLayer, Animatable, CAAnimationDelegate {
                 
                 let keyAnim = CAKeyframeAnimation(keyPath: "fillColor")
                 keyAnim.duration = timeLine.duration
-                
-                log(debug: "timeLine.duration = \(timeLine.duration)")
                 
                 var colors: [CGColor] = [UIColor.clear.cgColor]
                 var locations: [Double] = [0.0]
@@ -592,11 +585,9 @@ class FlashLayer: OverlayLayer, Animatable, CAAnimationDelegate {
     }
     
     func animationDidStart(_ anim: CAAnimation) {
-        log(debug: "...")
     }
     
     func animationDidStop(_ anim: CAAnimation, finished: Bool) {
-        log(debug: "finished = \(finished)")
         guard finished else { return }
         guard
             let timeLine,

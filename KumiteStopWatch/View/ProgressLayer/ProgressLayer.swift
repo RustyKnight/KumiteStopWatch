@@ -9,7 +9,7 @@
 import UIKit
 
 class ProgressLayer: CALayer {
-	var progress: CGFloat = 0
+    @objc var progress: CGFloat = 0
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -32,7 +32,7 @@ class ProgressLayer: CALayer {
 	*/
     override func action(forKey event: String) -> CAAction? {
 		var action: CAAction?
-		if event == "progress" {
+		if event == #keyPath(ProgressLayer.progress) {
 			action = self.animation(forKey: event)
 		} else {
 			action = super.action(forKey: event)

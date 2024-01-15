@@ -13,15 +13,11 @@ import KZCoreUILibrary
 
 class PieSliceLayer: CALayer {
 
-	var startAngle: CGFloat = 0.0 {
-		didSet {
-			setNeedsDisplay()
-		}
+	@objc var startAngle: CGFloat = 0.0 {
+		didSet { setNeedsDisplay() }
 	}
-	var endAngle: CGFloat = 0.0 {
-		didSet {
-			setNeedsDisplay()
-		}
+    @objc var endAngle: CGFloat = 0.0 {
+		didSet { setNeedsDisplay() }
 	}
 	
 	var fillColor: UIColor? = UIColor.gray {
@@ -83,14 +79,11 @@ class PieSliceLayer: CALayer {
 		In our case, we will return an animation for the startAngle and endAngle properties.
 	*/
     
-    override func action(forKey event: String) -> CAAction? {
-		var action: CAAction?
-		if event == "startAngle" || event == "endAngle" {
-			action = self.animation(forKey: event)
-		} else {
-			action = super.action(forKey: event)
-		}
-		return action
+    override func action(forKey key: String) -> CAAction? {
+        if key == #keyPath(PieSliceLayer.startAngle) || key == #keyPath(PieSliceLayer.endAngle) {
+            return self.animation(forKey: key)
+        }
+		return super.action(forKey: key)
 	}
 	
 	/*
@@ -98,13 +91,10 @@ class PieSliceLayer: CALayer {
 		startAngle and endAngle properties will require a redraw.	
 	*/
     override class func needsDisplay(forKey key: String) -> Bool {
-		var needsDisplay = false
-		if key == "startAngle" || key == "endAngle" {
-			needsDisplay = true
-		} else {
-            needsDisplay = super.needsDisplay(forKey: key)
-		}
-		return needsDisplay
+        if key == #keyPath(PieSliceLayer.startAngle) || key == #keyPath(PieSliceLayer.endAngle) {
+            return true
+        }
+        return false
 	}
 	
 	/*
@@ -123,7 +113,8 @@ class PieSliceLayer: CALayer {
 		
 		let p1 = CGPoint(
 			x: center.x + radius * cos(startAngle),
-			y: center.y + radius * sin(startAngle))
+			y: center.y + radius * sin(startAngle)
+        )
         ctx.addLine(to: p1)
 		
 		let clockwise = startAngle > endAngle ? true : false
